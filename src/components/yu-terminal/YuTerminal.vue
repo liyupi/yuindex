@@ -1,0 +1,331 @@
+<template>
+  <div ref="terminalRef" class="yu-terminal" :style="mainStyle">
+    <a-collapse
+      v-model:activeKey="activeKeys"
+      :bordered="false"
+      expand-icon-position="right"
+    >
+      <template v-for="(output, index) in outputList" :key="index">
+        <!-- 折叠 -->
+        <a-collapse-panel
+          v-if="output.resultList && output.resultList.length > 1"
+          :key="index"
+          class="terminal-row"
+          :header="`${prompt} ${output.text}`"
+        >
+          <div
+            v-for="(result, idx) in output.resultList"
+            :key="idx"
+            class="terminal-row"
+          >
+            <content-output :output="result" />
+          </div>
+        </a-collapse-panel>
+        <!-- 不折叠 -->
+        <template v-else>
+          <!-- 输出命令及结果-->
+          <template v-if="output.type === 'command'">
+            <div class="terminal-row">
+              {{ `${prompt} ${output.text}` }}
+            </div>
+            <div
+              v-for="(result, idx) in output?.resultList"
+              :key="idx"
+              class="terminal-row"
+            >
+              <content-output :output="result" />
+            </div>
+          </template>
+          <!-- 打印信息 -->
+          <template v-else>
+            <div class="terminal-row">
+              <content-output :output="output" />
+            </div>
+          </template>
+        </template>
+      </template>
+    </a-collapse>
+    <div class="terminal-row">
+      <a-input
+        ref="commandInputRef"
+        v-model:value="inputCommand.text"
+        class="command-input"
+        :placeholder="inputCommand.placeholder"
+        :bordered="false"
+        autofocus
+        @press-enter="doSubmitCommand"
+      >
+        <template #addonBefore>
+          <span class="command-input-prompt">{{ prompt }}</span>
+        </template>
+      </a-input>
+    </div>
+    <div style="margin-bottom: 16px" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, onMounted, ref, StyleValue } from "vue";
+import CommandOutputType = YuTerminal.CommandOutputType;
+import OutputType = YuTerminal.OutputType;
+import CommandInputType = YuTerminal.CommandInputType;
+import { registerShortCuts } from "./shortcuts";
+import TerminalType = YuTerminal.TerminalType;
+import TextOutputType = YuTerminal.TextOutputType;
+import useHistory from "./history";
+import ContentOutput from "./ContentOutput.vue";
+
+interface YuTerminalProps {
+  height?: string | number;
+  fullScreen?: boolean;
+  // eslint-disable-next-line vue/require-default-prop
+  onSubmitCommand?: (inputText: string) => void;
+}
+
+const props = withDefaults(defineProps<YuTerminalProps>(), {
+  height: "400px",
+  fullScreen: false,
+});
+
+const terminalRef = ref();
+const activeKeys = ref<number[]>([]);
+// 输出列表
+const outputList = ref<OutputType[]>([]);
+// 命令列表
+const commandList = ref<CommandOutputType[]>([]);
+const commandInputRef = ref();
+const prompt = ref("[local]$");
+
+/**
+ * 初始命令
+ */
+const initCommand: CommandInputType = {
+  text: "",
+  placeholder: "",
+};
+
+/**
+ * 待输入的命令
+ */
+const inputCommand = ref<CommandInputType>({
+  ...initCommand,
+});
+
+/**
+ * 全局记录当前命令，便于写入结果
+ */
+let currentNewCommand: CommandOutputType;
+
+const {
+  commandHistoryPos,
+  showPrevCommand,
+  showNextCommand,
+  listCommandHistory,
+} = useHistory(commandList.value, inputCommand);
+
+/**
+ * 提交命令（回车）
+ */
+const doSubmitCommand = () => {
+  let inputText = inputCommand.value.text;
+  // 执行某条历史命令
+  if (inputText.startsWith("!")) {
+    const commandIndex = Number(inputText.substring(1));
+    const command = commandList.value[commandIndex - 1];
+    if (command) {
+      inputText = command.text;
+    }
+  }
+  // 执行命令
+  const newCommand: CommandOutputType = {
+    text: inputText,
+    type: "command",
+    resultList: [],
+  };
+  // 记录当前命令，便于写入结果
+  currentNewCommand = newCommand;
+  // 执行命令
+  props.onSubmitCommand?.(inputText);
+  // 添加输出（为空也要输出换行）
+  outputList.value.push(newCommand);
+  // 不为空字符串才算是有效命令
+  if (inputText) {
+    commandList.value.push(newCommand);
+    // 重置当前要查看的命令位置
+    commandHistoryPos.value = commandList.value.length;
+  }
+  inputCommand.value = { ...initCommand };
+  // 默认展开折叠面板
+  activeKeys.value.push(outputList.value.length - 1);
+  // 自动滚到底部
+  setTimeout(() => {
+    terminalRef.value.scrollTop = terminalRef.value.scrollHeight;
+  }, 50);
+};
+
+/**
+ * 终端主样式
+ */
+const mainStyle = computed(() => {
+  const fullScreenStyle: StyleValue = {
+    position: "fixed",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  };
+  return props.fullScreen
+    ? fullScreenStyle
+    : {
+        height: props.height,
+      };
+});
+
+/**
+ * 清空所有输出
+ */
+const clear = () => {
+  outputList.value = [];
+};
+
+/**
+ * 写命令文本结果
+ * @param text
+ */
+const writeTextResult = (text: string) => {
+  const newOutput: TextOutputType = {
+    text,
+    type: "text",
+  };
+  currentNewCommand.resultList.push(newOutput);
+};
+
+/**
+ * 写结果
+ * @param output
+ */
+const writeResult = (output: OutputType) => {
+  currentNewCommand.resultList.push(output);
+};
+
+/**
+ * 立即输出文本
+ * @param text
+ */
+const writeTextOutput = (text: string) => {
+  const newOutput: TextOutputType = {
+    text,
+    type: "text",
+  };
+  outputList.value.push(newOutput);
+};
+
+/**
+ * 立即输出
+ * @param newOutput
+ */
+const writeOutput = (newOutput: OutputType) => {
+  outputList.value.push(newOutput);
+};
+
+/**
+ * 输入框聚焦
+ */
+const focusInput = () => {
+  commandInputRef.value.focus();
+};
+
+/**
+ * 操作终端的对象
+ */
+const terminal: TerminalType = {
+  writeTextResult,
+  writeResult,
+  writeTextOutput,
+  writeOutput,
+  clear,
+  focusInput,
+  doSubmitCommand,
+  showNextCommand,
+  showPrevCommand,
+  listCommandHistory,
+};
+
+onMounted(() => {
+  registerShortCuts(terminal);
+  terminal.writeTextOutput(
+    "Welcome to YuIndex，coolest browser index for geeks!"
+  );
+  terminal.writeTextOutput("Author coder_yupi: https://github.com/liyupi");
+  terminal.writeTextOutput("<br/>");
+});
+
+defineExpose({
+  terminal,
+});
+</script>
+
+<style scoped>
+.yu-terminal {
+  background: black;
+  padding: 20px;
+  overflow: scroll;
+}
+
+.yu-terminal::-webkit-scrollbar {
+  display: none;
+}
+
+.yu-terminal span {
+  font-size: 16px;
+}
+
+.yu-terminal
+  :deep(.ant-collapse-icon-position-right
+    > .ant-collapse-item
+    > .ant-collapse-header) {
+  color: white;
+  padding: 0;
+}
+
+.yu-terminal
+  :deep(.ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content) {
+  background: white;
+}
+
+.yu-terminal :deep(.ant-collapse-borderless > .ant-collapse-item) {
+  border: none;
+}
+
+.yu-terminal :deep(.ant-collapse-content > .ant-collapse-content-box) {
+  padding: 0;
+}
+
+.command-input {
+  caret-color: white;
+}
+
+.command-input :deep(input) {
+  color: white !important;
+  font-size: 16px;
+  padding: 0 10px;
+}
+
+.command-input :deep(.ant-input-group-addon) {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.command-input-prompt {
+  color: white;
+  background: transparent;
+}
+
+.terminal-row {
+  background: black;
+  color: white;
+  font-size: 16px;
+  font-family: courier-new, courier, monospace;
+}
+</style>
