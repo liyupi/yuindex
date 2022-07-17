@@ -7,7 +7,7 @@ import { SpaceItemType } from "./spaceCommands";
  */
 const addCommand: CommandType = {
   func: "add",
-  alias: ["touch", "new", "shoucang"],
+  alias: ["touch", "new"],
   options: [
     {
       key: "name",
@@ -54,7 +54,7 @@ const addCommand: CommandType = {
     if (result) {
       terminal.writeTextResult("添加成功");
     } else {
-      terminal.writeTextResult("添加失败");
+      terminal.writeTextErrorResult("添加失败");
     }
   },
 };

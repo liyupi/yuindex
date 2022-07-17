@@ -24,7 +24,7 @@ export default {
   action(options, terminal): void {
     const { _, self } = options;
     if (_.length < 1) {
-      terminal.writeTextResult("参数不足");
+      terminal.writeTextErrorResult("参数不足");
       return;
     }
     let link = _[0];

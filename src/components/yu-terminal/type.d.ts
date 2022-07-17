@@ -1,5 +1,10 @@
 declare namespace YuTerminal {
   /**
+   * 输出状态
+   */
+  type OutputStatusType = "info" | "success" | "warning" | "error" | "system";
+
+  /**
    * 输出类型
    */
   interface OutputType {
@@ -7,6 +12,7 @@ declare namespace YuTerminal {
     text?: string;
     resultList?: OutputType[];
     component?: any;
+    status?: OutputStatusType;
   }
 
   /**
@@ -51,9 +57,13 @@ declare namespace YuTerminal {
     // 立即输出
     writeOutput: (output: OutputType) => void;
     // 立即输出文本
-    writeTextOutput: (text: string) => void;
+    writeTextOutput: (text: string, status?: OutputStatusType) => void;
     // 写命令文本结果
-    writeTextResult: (text: string) => void;
+    writeTextResult: (text: string, status?: OutputStatusType) => void;
+    // 写命令错误文本结果
+    writeTextErrorResult: (text: string) => void;
+    // 写命令成功文本结果
+    writeTextSuccessResult: (text: string) => void;
     // 写命令结果
     writeResult: (output: OutputType) => void;
     // 输入框聚焦
@@ -66,5 +76,7 @@ declare namespace YuTerminal {
     showPrevCommand: () => void;
     // 查看历史命令
     listCommandHistory: () => CommandOutputType[];
+    // 折叠 / 展开所有块
+    toggleAllCollapse: () => void;
   }
 }

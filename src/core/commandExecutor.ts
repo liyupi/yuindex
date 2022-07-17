@@ -15,6 +15,7 @@ export const doCommandExecute = (text: string, terminal: TerminalType) => {
   // 解析文本，得到命令
   const command: CommandType = getCommand(text);
   if (!command) {
+    terminal.writeTextErrorResult("找不到命令");
     return;
   }
   // 解析参数（需传递不同的解析规则）
@@ -93,7 +94,7 @@ export const executeSubCommand = (
   }
   const subCommand = subCommands[_[0]];
   if (!subCommand) {
-    terminal.writeTextResult("找不到命令");
+    terminal.writeTextErrorResult("找不到命令");
     return;
   }
   // 选项中移除主命令

@@ -63,6 +63,14 @@ const shortCutList: ShortCutType[] = [
     },
   },
   {
+    code: "KeyO",
+    ctrlKey: true,
+    action(e, terminal) {
+      e.preventDefault();
+      terminal.toggleAllCollapse();
+    },
+  },
+  {
     code: "KeyV",
     metaKey: true,
     action(e, terminal) {

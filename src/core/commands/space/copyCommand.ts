@@ -28,7 +28,7 @@ const copyCommand: CommandType = {
   action(options, terminal): void {
     const { _, recursive = false } = options;
     if (_.length < 2) {
-      terminal.writeTextResult("参数不足");
+      terminal.writeTextErrorResult("参数不足");
       return;
     }
     const spaceStore = useSpaceStore();
@@ -37,7 +37,7 @@ const copyCommand: CommandType = {
     if (result) {
       terminal.writeTextResult("复制成功");
     } else {
-      terminal.writeTextResult("复制失败");
+      terminal.writeTextErrorResult("复制失败");
     }
   },
 };

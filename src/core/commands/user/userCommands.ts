@@ -24,7 +24,7 @@ const userCommand: CommandType = {
   action(options, terminal) {
     const { _ } = options;
     if (_.length < 1) {
-      terminal.writeTextResult("参数不足");
+      terminal.writeTextErrorResult("参数不足");
       return;
     }
     let subCommands = this.subCommands;

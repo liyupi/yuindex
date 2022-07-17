@@ -74,6 +74,7 @@ import TerminalType = YuTerminal.TerminalType;
 import TextOutputType = YuTerminal.TextOutputType;
 import useHistory from "./history";
 import ContentOutput from "./ContentOutput.vue";
+import OutputStatusType = YuTerminal.OutputStatusType;
 
 interface YuTerminalProps {
   height?: string | number;
@@ -191,13 +192,31 @@ const clear = () => {
 /**
  * 写命令文本结果
  * @param text
+ * @param status
  */
-const writeTextResult = (text: string) => {
+const writeTextResult = (text: string, status?: OutputStatusType) => {
   const newOutput: TextOutputType = {
     text,
     type: "text",
+    status,
   };
   currentNewCommand.resultList.push(newOutput);
+};
+
+/**
+ * 写文本错误状态结果
+ * @param text
+ */
+const writeTextErrorResult = (text: string) => {
+  writeTextResult(text, "error");
+};
+
+/**
+ * 写文本成功状态结果
+ * @param text
+ */
+const writeTextSuccessResult = (text: string) => {
+  writeTextResult(text, "success");
 };
 
 /**
@@ -211,11 +230,13 @@ const writeResult = (output: OutputType) => {
 /**
  * 立即输出文本
  * @param text
+ * @param status
  */
-const writeTextOutput = (text: string) => {
+const writeTextOutput = (text: string, status?: OutputStatusType) => {
   const newOutput: TextOutputType = {
     text,
     type: "text",
+    status,
   };
   outputList.value.push(newOutput);
 };
@@ -236,10 +257,27 @@ const focusInput = () => {
 };
 
 /**
+ * 折叠 / 展开所有块
+ */
+const toggleAllCollapse = () => {
+  // 展开
+  if (activeKeys.value.length === 0) {
+    activeKeys.value = outputList.value.map((_, index) => {
+      return index;
+    });
+  } else {
+    // 折叠
+    activeKeys.value = [];
+  }
+};
+
+/**
  * 操作终端的对象
  */
 const terminal: TerminalType = {
   writeTextResult,
+  writeTextErrorResult,
+  writeTextSuccessResult,
   writeResult,
   writeTextOutput,
   writeOutput,
@@ -249,6 +287,7 @@ const terminal: TerminalType = {
   showNextCommand,
   showPrevCommand,
   listCommandHistory,
+  toggleAllCollapse,
 };
 
 onMounted(() => {

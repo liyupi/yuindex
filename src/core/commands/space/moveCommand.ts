@@ -28,7 +28,7 @@ const moveCommand: CommandType = {
   action(options, terminal): void {
     const { _, recursive = false } = options;
     if (_.length < 2) {
-      terminal.writeTextResult("参数不足");
+      terminal.writeTextErrorResult("参数不足");
       return;
     }
     const spaceStore = useSpaceStore();
@@ -37,7 +37,7 @@ const moveCommand: CommandType = {
     if (result) {
       terminal.writeTextResult("移动成功");
     } else {
-      terminal.writeTextResult("移动失败");
+      terminal.writeTextErrorResult("移动失败");
     }
   },
 };

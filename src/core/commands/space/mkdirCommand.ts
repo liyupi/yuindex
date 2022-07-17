@@ -16,7 +16,7 @@ const mkdirCommand: CommandType = {
   action(options, terminal): void {
     const { _ } = options;
     if (_.length < 1) {
-      terminal.writeTextResult("参数不足");
+      terminal.writeTextErrorResult("参数不足");
       return;
     }
     const spaceStore = useSpaceStore();
@@ -30,7 +30,7 @@ const mkdirCommand: CommandType = {
     if (result) {
       terminal.writeTextResult("创建目录成功");
     } else {
-      terminal.writeTextResult("创建目录失败");
+      terminal.writeTextErrorResult("创建目录失败");
     }
   },
 };

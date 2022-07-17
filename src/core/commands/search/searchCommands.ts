@@ -65,7 +65,7 @@ const searchCommand: CommandType = {
     // 执行不同搜索源的搜索方法
     const fromObj = fromDict[from];
     if (!fromObj) {
-      terminal.writeTextResult("找不到搜索源");
+      terminal.writeTextErrorResult("找不到搜索源");
       return;
     }
     return fromObj.action(options, terminal);

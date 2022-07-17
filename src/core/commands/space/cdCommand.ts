@@ -15,7 +15,7 @@ const cdCommand: CommandType = {
   action(options, terminal): void {
     const { _ } = options;
     if (_.length < 1) {
-      terminal.writeTextResult("参数不足");
+      terminal.writeTextErrorResult("参数不足");
       return;
     }
     const targetDir = _[0];
@@ -24,7 +24,7 @@ const cdCommand: CommandType = {
     if (result) {
       terminal.writeTextResult(`已切换至目录：${spaceStore.currentDir}`);
     } else {
-      terminal.writeTextResult("切换失败");
+      terminal.writeTextErrorResult("切换目录失败");
     }
   },
 };
