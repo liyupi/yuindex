@@ -32,6 +32,50 @@ export const useSpaceStore = defineStore("space", {
   },
   actions: {
     /**
+     * 获取单条目
+     * @param key
+     */
+    getItem(key: string) {
+      const fullPath = getFullPath(this.currentDir, key);
+      return this.space[fullPath];
+    },
+    /**
+     * 获取某目录下的条目
+     * @param dir 目录
+     * @param recursive 是否递归
+     */
+    listItems(dir?: string, recursive = false): SpaceItemType[] {
+      if (!dir) {
+        dir = this.currentDir;
+      } else {
+        dir = getFullPath(this.currentDir, dir);
+      }
+      const resultList: SpaceItemType[] = [];
+      // 父目录层级
+      const parentDirDepth = getItemDepth(dir);
+      // 查询 dir 下的 item
+      for (const key in this.space) {
+        // 不列举自身
+        if (key === dir) {
+          continue;
+        }
+        // 前缀必须匹配
+        if (!key.startsWith(dir)) {
+          continue;
+        }
+        // 不递归，只展示直接子级
+        if (!recursive) {
+          // 直接子级的 '/' 数比父级多 1
+          if (getItemDepth(key) - 1 === parentDirDepth) {
+            resultList.push(this.space[key]);
+          }
+        } else {
+          resultList.push(this.space[key]);
+        }
+      }
+      return resultList;
+    },
+    /**
      * 添加条目
      * @param item
      */
@@ -189,4 +233,15 @@ const getItemName = (path: string): string => {
   // 从最后一个 '/' 开始取字符串
   // e.g. /a/b => b
   return path.substring(path.lastIndexOf("/") + 1);
+};
+
+/**
+ * 获得条目层级
+ * @param key
+ */
+const getItemDepth = (key: string) => {
+  if (key === "/") {
+    return 1;
+  }
+  return key.split("/").length;
 };

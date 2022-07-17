@@ -1,5 +1,4 @@
 import { CommandType } from "../../command";
-import myDayjs from "../../../plugins/myDayjs";
 import { defineAsyncComponent } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
