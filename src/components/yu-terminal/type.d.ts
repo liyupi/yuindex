@@ -13,6 +13,7 @@ declare namespace YuTerminal {
     resultList?: OutputType[];
     component?: any;
     status?: OutputStatusType;
+    props?: any;
   }
 
   /**
@@ -38,6 +39,7 @@ declare namespace YuTerminal {
   interface ComponentOutputType extends OutputType {
     type: "component";
     component: any;
+    props?: any;
   }
 
   /**

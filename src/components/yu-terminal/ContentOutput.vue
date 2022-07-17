@@ -1,26 +1,30 @@
 <template>
   <div class="content-output">
     <template v-if="output.type === 'text'">
-      <a-tag v-if="outputTagColor" :color="outputTagColor">{{
-        output.status
-      }}</a-tag>
+      <a-tag v-if="outputTagColor" :color="outputTagColor"
+        >{{ output.status }}
+      </a-tag>
       <span v-if="output.type === 'text'" v-html="smartText(output.text)" />
     </template>
-    <component :is="output.component" v-if="output.type === 'component'" />
+    <component
+      :is="output.component"
+      v-if="output.type === 'component'"
+      v-bind="output.props"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import smartText from "../../plugins/smartText";
 import OutputType = YuTerminal.OutputType;
-import { computed, ref } from "vue";
+import { computed, toRefs } from "vue";
 
 interface OutputProps {
   output: OutputType;
 }
 
 const props = defineProps<OutputProps>();
-const output = ref(props.output);
+const { output } = toRefs(props);
 const outputTagColor = computed((): string => {
   if (!output.value.status) {
     return "";

@@ -11,8 +11,13 @@
           v-if="output.resultList && output.resultList.length > 1"
           :key="index"
           class="terminal-row"
-          :header="`${prompt} ${output.text}`"
         >
+          <template #header>
+            <span style="user-select: none; margin-right: 10px">{{
+              prompt
+            }}</span>
+            <span>{{ output.text }}</span>
+          </template>
           <div
             v-for="(result, idx) in output.resultList"
             :key="idx"
@@ -26,7 +31,10 @@
           <!-- 输出命令及结果-->
           <template v-if="output.type === 'command'">
             <div class="terminal-row">
-              {{ `${prompt} ${output.text}` }}
+              <span style="user-select: none; margin-right: 10px">{{
+                prompt
+              }}</span>
+              <span>{{ output.text }}</span>
             </div>
             <div
               v-for="(result, idx) in output?.resultList"

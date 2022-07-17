@@ -6,12 +6,14 @@ import dateCommand from "./commands/dateCommand";
 import clearCommand from "./commands/clearCommand";
 import historyCommand from "./commands/historyCommand";
 import userCommands from "./commands/user/userCommands";
+import timingCommand from "./commands/timing/timingCommand";
 
 /**
  * 命令列表
  */
 const commandList: CommandType[] = [
   ...searchCommands,
+  timingCommand,
   gotoCommand,
   dateCommand,
   clearCommand,
