@@ -14,6 +14,7 @@
     "axios": "^0.27.2",
     "dayjs": "^1.11.3",
     "getopts": "^2.3.0",
+    "lodash": "^4.17.21",
     "pinia": "^2.0.14",
     "pinia-plugin-persistedstate": "^1.6.1",
     "vue": "^3.2.25",
@@ -23,6 +24,7 @@
     "xterm-addon-web-links": "^0.6.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "@vitejs/plugin-vue": "^2.3.3",

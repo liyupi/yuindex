@@ -69,13 +69,17 @@
           </template>
         </a-input>
       </div>
+      <!-- 输入提示-->
+      <div v-if="hint" class="terminal-row" style="color: #bbb">
+        hint：{{ hint }}
+      </div>
       <div style="margin-bottom: 16px" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, StyleValue } from "vue";
+import { computed, onMounted, ref, StyleValue, watchEffect } from "vue";
 import CommandOutputType = YuTerminal.CommandOutputType;
 import OutputType = YuTerminal.OutputType;
 import CommandInputType = YuTerminal.CommandInputType;
@@ -86,6 +90,7 @@ import useHistory from "./history";
 import ContentOutput from "./ContentOutput.vue";
 import OutputStatusType = YuTerminal.OutputStatusType;
 import { useTerminalConfigStore } from "../../core/commands/terminal/config/terminalConfigStore";
+import useHint from "./hint";
 
 interface YuTerminalProps {
   height?: string | number;
@@ -137,10 +142,13 @@ const {
   listCommandHistory,
 } = useHistory(commandList.value, inputCommand);
 
+const { hint, setHint, debounceSetHint } = useHint();
+
 /**
  * 提交命令（回车）
  */
 const doSubmitCommand = async () => {
+  setHint("");
   let inputText = inputCommand.value.text;
   // 执行某条历史命令
   if (inputText.startsWith("!")) {
@@ -176,6 +184,11 @@ const doSubmitCommand = async () => {
     terminalRef.value.scrollTop = terminalRef.value.scrollHeight;
   }, 50);
 };
+
+// 输入框内容改变时，触发输入提示
+watchEffect(() => {
+  debounceSetHint(inputCommand.value.text);
+});
 
 /**
  * 终端主样式

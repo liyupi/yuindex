@@ -9,10 +9,12 @@ import { executeSubCommand } from "../../commandExecutor";
  */
 const userCommand: CommandType = {
   func: "user",
+  name: "用户",
   alias: [],
   params: [
     {
       key: "subCommand",
+      desc: "子命令",
       required: true,
     },
   ],

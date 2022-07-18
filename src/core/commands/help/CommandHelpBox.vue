@@ -25,7 +25,8 @@
 
 <script setup lang="ts">
 import { computed, onMounted, toRefs } from "vue";
-import { CommandOptionType, CommandType } from "../../command";
+import { CommandType } from "../../command";
+import { getUsageStr, getOptionKeyList } from "./helpUtils";
 
 interface HelpBoxProps {
   command: CommandType;
@@ -39,64 +40,8 @@ const { command } = toRefs(props);
  */
 const usageStr = computed(() => {
   let commandValue = command.value;
-  let str = commandValue.func;
-  if (commandValue.params && commandValue.params.length > 0) {
-    const paramsStrList: string[] = commandValue.params.map((param) => {
-      if (param.required) {
-        return `<${param.key}>`;
-      } else {
-        return `[${param.key}]`;
-      }
-    });
-    str += " " + paramsStrList.join(" ");
-  }
-  if (commandValue.options?.length > 0) {
-    const optionStrList: string[] = commandValue.options.map((option) => {
-      const optionKey = getOptionKey(option);
-      if (option.required) {
-        if (option.type === "boolean") {
-          return `<${optionKey} ${option.key}>`;
-        } else {
-          return `<${optionKey}>`;
-        }
-      } else {
-        if (option.type === "boolean") {
-          return `[${optionKey}]`;
-        } else {
-          return `[${optionKey} ${option.key}]`;
-        }
-      }
-    });
-    str += " " + optionStrList.join(" ");
-  }
-  return str;
+  return getUsageStr(commandValue);
 });
-
-/**
- * 获取选项关键词
- * @param option
- */
-const getOptionKey = (option: CommandOptionType) => {
-  // 优先用简写
-  if (option.alias && option.alias.length > 0) {
-    return "-" + option.alias[0];
-  }
-  return "--" + option.key;
-};
-
-/**
- * 获取选项关键词列表
- * @param option
- */
-const getOptionKeyList = (option: CommandOptionType) => {
-  const list = [];
-  // 优先用简写
-  if (option.alias && option.alias.length > 0) {
-    list.push("-" + option.alias[0]);
-  }
-  list.push("--" + option.key);
-  return list;
-};
 
 onMounted(() => {});
 </script>

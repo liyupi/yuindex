@@ -13,6 +13,7 @@ import fanyiCommand from "./commands/fanyi/fanyiCommand";
 import helpCommand from "./commands/help/helpCommand";
 import infoCommand from "./commands/terminal/info/infoCommand";
 import pingCommand from "./commands/pingCommand";
+import hintCommand from "./commands/terminal/config/hintCommand";
 
 /**
  * 命令列表（数组元素顺序会影响 help 命令的展示顺序）
@@ -32,6 +33,7 @@ const commandList: CommandType[] = [
   helpCommand,
   infoCommand,
   pingCommand,
+  hintCommand,
 ];
 
 /**
