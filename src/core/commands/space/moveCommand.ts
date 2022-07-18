@@ -6,20 +6,24 @@ import { useSpaceStore } from "./spaceStore";
  */
 const moveCommand: CommandType = {
   func: "move",
+  name: "移动空间条目",
   alias: ["mv"],
   params: [
     {
       key: "source",
+      desc: "来源路径",
       required: true,
     },
     {
       key: "target",
+      desc: "目标路径",
       required: true,
     },
   ],
   options: [
     {
       key: "recursive",
+      desc: "是否递归移动",
       alias: ["r"],
       type: "boolean",
       defaultValue: false,

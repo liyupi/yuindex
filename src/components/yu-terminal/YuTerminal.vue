@@ -1,74 +1,76 @@
 <template>
-  <div ref="terminalRef" class="yu-terminal" :style="mainStyle">
-    <a-collapse
-      v-model:activeKey="activeKeys"
-      :bordered="false"
-      expand-icon-position="right"
-    >
-      <template v-for="(output, index) in outputList" :key="index">
-        <!-- 折叠 -->
-        <a-collapse-panel
-          v-if="output.resultList && output.resultList.length > 1"
-          :key="index"
-          class="terminal-row"
-        >
-          <template #header>
-            <span style="user-select: none; margin-right: 10px">{{
-              prompt
-            }}</span>
-            <span>{{ output.text }}</span>
-          </template>
-          <div
-            v-for="(result, idx) in output.resultList"
-            :key="idx"
+  <div class="yu-terminal-wrapper" :style="wrapperStyle">
+    <div ref="terminalRef" class="yu-terminal" :style="mainStyle">
+      <a-collapse
+        v-model:activeKey="activeKeys"
+        :bordered="false"
+        expand-icon-position="right"
+      >
+        <template v-for="(output, index) in outputList" :key="index">
+          <!-- 折叠 -->
+          <a-collapse-panel
+            v-if="output.resultList && output.resultList.length > 1"
+            :key="index"
             class="terminal-row"
           >
-            <content-output :output="result" />
-          </div>
-        </a-collapse-panel>
-        <!-- 不折叠 -->
-        <template v-else>
-          <!-- 输出命令及结果-->
-          <template v-if="output.type === 'command'">
-            <div class="terminal-row">
+            <template #header>
               <span style="user-select: none; margin-right: 10px">{{
                 prompt
               }}</span>
               <span>{{ output.text }}</span>
-            </div>
+            </template>
             <div
-              v-for="(result, idx) in output?.resultList"
+              v-for="(result, idx) in output.resultList"
               :key="idx"
               class="terminal-row"
             >
               <content-output :output="result" />
             </div>
-          </template>
-          <!-- 打印信息 -->
+          </a-collapse-panel>
+          <!-- 不折叠 -->
           <template v-else>
-            <div class="terminal-row">
-              <content-output :output="output" />
-            </div>
+            <!-- 输出命令及结果-->
+            <template v-if="output.type === 'command'">
+              <div class="terminal-row">
+                <span style="user-select: none; margin-right: 10px">{{
+                  prompt
+                }}</span>
+                <span>{{ output.text }}</span>
+              </div>
+              <div
+                v-for="(result, idx) in output?.resultList"
+                :key="idx"
+                class="terminal-row"
+              >
+                <content-output :output="result" />
+              </div>
+            </template>
+            <!-- 打印信息 -->
+            <template v-else>
+              <div class="terminal-row">
+                <content-output :output="output" />
+              </div>
+            </template>
           </template>
         </template>
-      </template>
-    </a-collapse>
-    <div class="terminal-row">
-      <a-input
-        ref="commandInputRef"
-        v-model:value="inputCommand.text"
-        class="command-input"
-        :placeholder="inputCommand.placeholder"
-        :bordered="false"
-        autofocus
-        @press-enter="doSubmitCommand"
-      >
-        <template #addonBefore>
-          <span class="command-input-prompt">{{ prompt }}</span>
-        </template>
-      </a-input>
+      </a-collapse>
+      <div class="terminal-row">
+        <a-input
+          ref="commandInputRef"
+          v-model:value="inputCommand.text"
+          class="command-input"
+          :placeholder="inputCommand.placeholder"
+          :bordered="false"
+          autofocus
+          @press-enter="doSubmitCommand"
+        >
+          <template #addonBefore>
+            <span class="command-input-prompt">{{ prompt }}</span>
+          </template>
+        </a-input>
+      </div>
+      <div style="margin-bottom: 16px" />
     </div>
-    <div style="margin-bottom: 16px" />
   </div>
 </template>
 
@@ -83,6 +85,7 @@ import TextOutputType = YuTerminal.TextOutputType;
 import useHistory from "./history";
 import ContentOutput from "./ContentOutput.vue";
 import OutputStatusType = YuTerminal.OutputStatusType;
+import { useTerminalConfigStore } from "../../core/commands/terminal/config/terminalConfigStore";
 
 interface YuTerminalProps {
   height?: string | number;
@@ -104,6 +107,8 @@ const outputList = ref<OutputType[]>([]);
 const commandList = ref<CommandOutputType[]>([]);
 const commandInputRef = ref();
 const prompt = ref("[local]$");
+
+const configStore = useTerminalConfigStore();
 
 /**
  * 初始命令
@@ -135,7 +140,7 @@ const {
 /**
  * 提交命令（回车）
  */
-const doSubmitCommand = () => {
+const doSubmitCommand = async () => {
   let inputText = inputCommand.value.text;
   // 执行某条历史命令
   if (inputText.startsWith("!")) {
@@ -154,7 +159,7 @@ const doSubmitCommand = () => {
   // 记录当前命令，便于写入结果
   currentNewCommand = newCommand;
   // 执行命令
-  props.onSubmitCommand?.(inputText);
+  await props.onSubmitCommand?.(inputText);
   // 添加输出（为空也要输出换行）
   outputList.value.push(newCommand);
   // 不为空字符串才算是有效命令
@@ -188,6 +193,22 @@ const mainStyle = computed(() => {
     : {
         height: props.height,
       };
+});
+
+/**
+ * 终端包装类主样式
+ */
+const wrapperStyle = computed(() => {
+  const { background } = configStore;
+  const style = {
+    ...mainStyle.value,
+  };
+  if (background.startsWith("http")) {
+    style.background = `url(${background})`;
+  } else {
+    style.background = background;
+  }
+  return style;
 });
 
 /**
@@ -303,7 +324,12 @@ onMounted(() => {
   terminal.writeTextOutput(
     "Welcome to YuIndex，coolest browser index for geeks!"
   );
-  terminal.writeTextOutput("Author coder_yupi: https://github.com/liyupi");
+  terminal.writeTextOutput(
+    `Author <a href="https://docs.qq.com/doc/DUFFRVWladXVjeUxW" target="_blank">coder_yupi</a>` +
+      " | " +
+      `<a href="https://github.com/liyupi/yuindex" target='_blank'> GitHub Open Source</a>`
+  );
+  terminal.writeTextOutput(`Please input 'help' to enjoy`);
   terminal.writeTextOutput("<br/>");
 });
 
@@ -313,8 +339,12 @@ defineExpose({
 </script>
 
 <style scoped>
-.yu-terminal {
+.yu-terminal-wrapper {
   background: black;
+}
+
+.yu-terminal {
+  background: rgba(0, 0, 0, 0.6);
   padding: 20px;
   overflow: scroll;
 }
@@ -335,9 +365,8 @@ defineExpose({
   padding: 0;
 }
 
-.yu-terminal
-  :deep(.ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content) {
-  background: white;
+.yu-terminal :deep(.ant-collapse) {
+  background: none;
 }
 
 .yu-terminal :deep(.ant-collapse-borderless > .ant-collapse-item) {
@@ -370,7 +399,6 @@ defineExpose({
 }
 
 .terminal-row {
-  background: black;
   color: white;
   font-size: 16px;
   font-family: courier-new, courier, monospace;

@@ -9,7 +9,7 @@ import TerminalType = YuTerminal.TerminalType;
  */
 export const registerShortCuts = (terminal: TerminalType) => {
   document.onkeydown = (e) => {
-    console.log(e);
+    // console.log(e);
     let key = e.key;
     // 自动聚焦输入框
     if (key >= "a" && key <= "z" && !e.metaKey && !e.shiftKey && !e.ctrlKey) {

@@ -2,6 +2,11 @@ import { Ref, ref } from "vue";
 import CommandOutputType = YuTerminal.CommandOutputType;
 import CommandInputType = YuTerminal.CommandInputType;
 
+/**
+ * 查看历史功能
+ * @param commandList
+ * @param inputCommand
+ */
 const useHistory = (
   commandList: CommandOutputType[],
   inputCommand: Ref<CommandInputType>

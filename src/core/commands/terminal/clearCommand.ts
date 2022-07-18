@@ -1,4 +1,4 @@
-import { CommandType } from "../command";
+import { CommandType } from "../../command";
 
 /**
  * 清屏命令
@@ -6,6 +6,7 @@ import { CommandType } from "../command";
  */
 const clearCommand: CommandType = {
   func: "clear",
+  name: "清屏",
   alias: ["cl"],
   options: [],
   action(options, terminal): void {

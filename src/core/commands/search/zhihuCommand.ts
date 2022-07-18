@@ -6,16 +6,19 @@ import { CommandType } from "../../command";
  */
 const zhihuCommand: CommandType = {
   func: "zhihu",
+  name: "知乎搜索",
   alias: [],
   params: [
     {
       key: "word",
+      desc: "搜索内容",
       required: true,
     },
   ],
   options: [
     {
       key: "self",
+      desc: "是否当前页面打开",
       alias: ["s"],
       type: "boolean",
       defaultValue: false,

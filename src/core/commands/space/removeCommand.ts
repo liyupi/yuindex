@@ -3,26 +3,30 @@ import { ParsedOptions } from "getopts";
 import { useSpaceStore } from "./spaceStore";
 
 /**
- * 移除
+ * 删除
  */
 const removeCommand: CommandType = {
   func: "remove",
+  name: "删除空间条目",
   alias: ["rm", "delete", "del"],
   params: [
     {
       key: "item",
+      desc: "要删除的条目路径",
       required: true,
     },
   ],
   options: [
     {
       key: "recursive",
+      desc: "是否递归删除",
       alias: ["r"],
       type: "boolean",
       defaultValue: false,
     },
     {
       key: "force",
+      desc: "是否强制删除",
       alias: ["f"],
       type: "boolean",
       defaultValue: false,

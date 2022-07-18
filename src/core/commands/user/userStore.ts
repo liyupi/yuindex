@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { SpaceItemType, SpaceType } from "../space/spaceCommand";
+import { SpaceItemType, SpaceType } from "../space/spaceCommands";
 
 /**
  * 用户系统

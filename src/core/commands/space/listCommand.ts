@@ -1,22 +1,24 @@
 import { CommandType } from "../../command";
 import { ParsedOptions } from "getopts";
 import { useSpaceStore } from "./spaceStore";
-import { SpaceItemType } from "./spaceCommands";
 
 /**
  * 列举
  */
 const listCommand: CommandType = {
   func: "list",
+  name: "列举空间条目",
   alias: ["ls"],
   params: [
     {
       key: "dir",
+      desc: "目录",
     },
   ],
   options: [
     {
       key: "recursive",
+      desc: "是否递归列举",
       alias: ["r"],
       type: "boolean",
       defaultValue: false,

@@ -1,4 +1,4 @@
-import { CommandType } from "../command";
+import { CommandType } from "../../command";
 
 /**
  * 查看历史命令
@@ -6,6 +6,7 @@ import { CommandType } from "../command";
  */
 const historyCommand: CommandType = {
   func: "history",
+  name: "查看执行历史",
   alias: ["h"],
   options: [],
   action(options, terminal): void {

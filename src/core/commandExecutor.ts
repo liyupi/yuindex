@@ -2,13 +2,17 @@ import getopts, { ParsedOptions } from "getopts";
 import { commandMap } from "./commandData";
 import { CommandOptionType, CommandType } from "./command";
 import TerminalType = YuTerminal.TerminalType;
+import helpCommand from "./commands/help/helpCommand";
 
 /**
  * 执行命令
  * @param text 输入字符串
  * @param terminal 终端
  */
-export const doCommandExecute = (text: string, terminal: TerminalType) => {
+export const doCommandExecute = async (
+  text: string,
+  terminal: TerminalType
+) => {
   if (!text) {
     return;
   }
@@ -21,7 +25,7 @@ export const doCommandExecute = (text: string, terminal: TerminalType) => {
   // 解析参数（需传递不同的解析规则）
   const parsedOptions = doParse(text, command.options);
   // 执行
-  doAction(command, parsedOptions, terminal);
+  await doAction(command, parsedOptions, terminal);
 };
 
 /**
@@ -69,12 +73,19 @@ const doParse = (
 };
 
 // 执行
-const doAction = (
+const doAction = async (
   command: CommandType,
   options: ParsedOptions,
   terminal: TerminalType
 ) => {
-  command.action(options, terminal);
+  // 查看帮助
+  // e.g. xxx --help => { _: ["xxx"] }
+  if (options.help) {
+    const newOptions = { ...options, _: [command.func] };
+    helpCommand.action(newOptions, terminal);
+    return;
+  }
+  await command.action(options, terminal);
 };
 
 /**

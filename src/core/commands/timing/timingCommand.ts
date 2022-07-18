@@ -8,9 +8,11 @@ import ComponentOutputType = YuTerminal.ComponentOutputType;
  */
 const timingCommand: CommandType = {
   func: "timing",
+  name: "定时器",
   options: [
     {
       key: "seconds",
+      desc: "秒数",
       alias: ["s"],
       type: "string",
       required: true,

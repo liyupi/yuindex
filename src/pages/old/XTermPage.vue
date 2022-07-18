@@ -1,7 +1,7 @@
 <template>
   <div ref="domRef" style="height: 100vh" />
 </template>
-
+<!-- 已过时，XTerm 不好用 -->
 <script setup lang="ts">
 import { Terminal } from "xterm";
 import { onBeforeUnmount, onMounted, ref } from "vue";

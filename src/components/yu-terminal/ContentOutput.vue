@@ -9,7 +9,7 @@
     <component
       :is="output.component"
       v-if="output.type === 'component'"
-      v-bind="output.props"
+      v-bind="output.props ?? {}"
     />
   </div>
 </template>

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^3.2.10",
+    "axios": "^0.27.2",
     "dayjs": "^1.11.3",
     "getopts": "^2.3.0",
     "pinia": "^2.0.14",

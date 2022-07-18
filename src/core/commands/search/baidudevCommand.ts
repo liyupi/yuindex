@@ -6,16 +6,19 @@ import { CommandType } from "../../command";
  */
 const baidudevCommand: CommandType = {
   func: "baidudev",
+  name: "百度开发者搜索",
   alias: ["dev"],
   params: [
     {
       key: "word",
+      desc: "搜索内容",
       required: true,
     },
   ],
   options: [
     {
       key: "self",
+      desc: "是否当前页面打开",
       alias: ["s"],
       type: "boolean",
       defaultValue: false,

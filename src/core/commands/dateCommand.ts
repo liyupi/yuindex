@@ -7,6 +7,7 @@ import myDayjs from "../../plugins/myDayjs";
  */
 const dateCommand: CommandType = {
   func: "date",
+  name: "日期",
   options: [],
   action(options, terminal): void {
     const dateStr = myDayjs().format("YYYY-MM-DD HH:mm:ss");

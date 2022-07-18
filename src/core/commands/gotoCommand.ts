@@ -7,16 +7,19 @@ import { useSpaceStore } from "./space/spaceStore";
  */
 export default {
   func: "goto",
+  name: "网页跳转",
   alias: ["to", "open", "visit", "jump"],
   params: [
     {
       key: "link",
+      desc: "目标链接",
       required: true,
     },
   ],
   options: [
     {
       key: "self",
+      desc: "是否当前页面打开",
       alias: ["s"],
       type: "boolean",
       defaultValue: false,

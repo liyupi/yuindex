@@ -7,22 +7,26 @@ import { SpaceItemType } from "./spaceCommands";
  */
 const addCommand: CommandType = {
   func: "add",
+  name: "新增空间条目",
   alias: ["touch", "new"],
   options: [
     {
       key: "name",
+      desc: "条目名称（路径）",
       alias: ["n"],
       type: "string",
       required: true,
     },
     {
       key: "link",
+      desc: "链接",
       alias: ["l"],
       type: "string",
       required: true,
     },
     {
       key: "dir",
+      desc: "目标目录",
       alias: ["d"],
       type: "string",
     },

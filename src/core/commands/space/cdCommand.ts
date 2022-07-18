@@ -6,9 +6,12 @@ import { useSpaceStore } from "./spaceStore";
  */
 const cdCommand: CommandType = {
   func: "cd",
+  name: "切换空间目录",
   params: [
     {
       key: "dir",
+      desc: "目标目录",
+      required: true,
     },
   ],
   options: [],

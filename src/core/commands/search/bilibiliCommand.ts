@@ -8,16 +8,19 @@ const baseUrl = "https://www.baidu.com/s";
  */
 const bilibiliCommand: CommandType = {
   func: "bilibili",
+  name: "bilibili 搜索",
   alias: ["bzhan", "bili"],
   params: [
     {
       key: "word",
+      desc: "搜索内容",
       required: true,
     },
   ],
   options: [
     {
       key: "self",
+      desc: "是否当前页面打开",
       alias: ["s"],
       type: "boolean",
       defaultValue: false,

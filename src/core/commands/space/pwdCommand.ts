@@ -6,6 +6,7 @@ import { useSpaceStore } from "./spaceStore";
  */
 const pwdCommand: CommandType = {
   func: "pwd",
+  name: "显示当前空间位置",
   options: [],
   action(options, terminal): void {
     const spaceStore = useSpaceStore();

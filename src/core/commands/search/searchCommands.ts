@@ -36,10 +36,13 @@ const fromDict: Record<string, CommandType> = {
  */
 const searchCommand: CommandType = {
   func: "search",
+  name: "网页搜索",
   alias: ["s", "sousuo", "sou", "query"],
+  desc: "支持从不同平台快捷搜索内容",
   params: [
     {
       key: "word",
+      desc: "搜索内容",
       required: true,
     },
   ],
@@ -52,8 +55,8 @@ const searchCommand: CommandType = {
       defaultValue: "baidu",
     },
     {
-      // 当前页面打开
       key: "self",
+      desc: "是否当前页面打开",
       alias: ["s"],
       type: "boolean",
       defaultValue: false,

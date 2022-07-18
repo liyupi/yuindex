@@ -6,20 +6,24 @@ import { useSpaceStore } from "./spaceStore";
  */
 const copyCommand: CommandType = {
   func: "copy",
+  name: "复制空间条目",
   alias: ["cp"],
   params: [
     {
       key: "source",
+      desc: "来源路径",
       required: true,
     },
     {
       key: "target",
+      desc: "目标路径",
       required: true,
     },
   ],
   options: [
     {
       key: "recursive",
+      desc: "是否递归复制",
       alias: ["r"],
       type: "boolean",
       defaultValue: false,
