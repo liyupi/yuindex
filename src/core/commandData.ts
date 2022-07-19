@@ -14,6 +14,10 @@ import helpCommand from "./commands/help/helpCommand";
 import infoCommand from "./commands/terminal/info/infoCommand";
 import pingCommand from "./commands/pingCommand";
 import hintCommand from "./commands/terminal/config/hintCommand";
+import todoCommand from "./commands/todo/todoCommand";
+import musicCommand from "./commands/music/musicCommand";
+import ddosCommand from "./commands/ddos/ddosCommand";
+import moyuCommand from "./commands/moyu/moyuCommand";
 
 /**
  * 命令列表（数组元素顺序会影响 help 命令的展示顺序）
@@ -23,16 +27,20 @@ const commandList: CommandType[] = [
   ...searchCommands,
   ...spaceCommands,
   ...userCommands,
+  todoCommand,
   timingCommand,
   dateCommand,
   clearCommand,
   historyCommand,
-  backgroundCommand,
-  resetCommand,
   fanyiCommand,
   helpCommand,
   infoCommand,
   pingCommand,
+  musicCommand,
+  ddosCommand,
+  moyuCommand,
+  backgroundCommand,
+  resetCommand,
   hintCommand,
 ];
 

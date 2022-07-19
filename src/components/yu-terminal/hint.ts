@@ -10,7 +10,6 @@ import { useTerminalConfigStore } from "../../core/commands/terminal/config/term
  */
 const useHint = () => {
   const hint = ref("");
-
   const { showHint } = useTerminalConfigStore();
 
   const setHint = (inputText: string) => {

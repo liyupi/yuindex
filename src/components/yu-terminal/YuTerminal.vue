@@ -14,9 +14,9 @@
             class="terminal-row"
           >
             <template #header>
-              <span style="user-select: none; margin-right: 10px">{{
-                prompt
-              }}</span>
+              <span style="user-select: none; margin-right: 10px">
+                {{ prompt }}
+              </span>
               <span>{{ output.text }}</span>
             </template>
             <div

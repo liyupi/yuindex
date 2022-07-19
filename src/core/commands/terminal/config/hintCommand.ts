@@ -1,6 +1,5 @@
 import { CommandType } from "../../../command";
 import { useTerminalConfigStore } from "./terminalConfigStore";
-import axios from "axios";
 
 /**
  * 提示命令
@@ -8,7 +7,7 @@ import axios from "axios";
  */
 const hintCommand: CommandType = {
   func: "hint",
-  name: "提示",
+  name: "开关提示",
   desc: "开启 / 关闭输入提示",
   params: [
     {

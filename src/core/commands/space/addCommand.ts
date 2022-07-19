@@ -12,7 +12,7 @@ const addCommand: CommandType = {
   options: [
     {
       key: "name",
-      desc: "条目名称（路径）",
+      desc: "条目名称",
       alias: ["n"],
       type: "string",
       required: true,

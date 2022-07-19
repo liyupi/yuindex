@@ -8,10 +8,14 @@ export const getUsageStr = (command: CommandType) => {
   let str = command.func;
   if (command.params && command.params.length > 0) {
     const paramsStrList: string[] = command.params.map((param) => {
+      let word = param.key;
+      if (param.desc) {
+        word = param.desc;
+      }
       if (param.required) {
-        return `<${param.key}>`;
+        return `<${word}>`;
       } else {
-        return `[${param.key}]`;
+        return `[${word}]`;
       }
     });
     str += " " + paramsStrList.join(" ");
@@ -19,17 +23,25 @@ export const getUsageStr = (command: CommandType) => {
   if (command.options?.length > 0) {
     const optionStrList: string[] = command.options.map((option) => {
       const optionKey = getOptionKey(option);
-      if (option.required) {
-        if (option.type === "boolean") {
-          return `<${optionKey}>`;
+      if (option.type === "boolean") {
+        let word = optionKey;
+        if (option.desc) {
+          word += ` ${option.desc}`;
+        }
+        if (option.required) {
+          return `<${word}>`;
         } else {
-          return `<${optionKey} ${option.key}>`;
+          return `[${word}]`;
         }
       } else {
-        if (option.type === "boolean") {
-          return `[${optionKey}]`;
+        let word = option.key;
+        if (option.desc) {
+          word = option.desc;
+        }
+        if (option.required) {
+          return `<${optionKey} ${word}>`;
         } else {
-          return `[${optionKey} ${option.key}]`;
+          return `[${optionKey} ${word}]`;
         }
       }
     });
