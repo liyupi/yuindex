@@ -10,6 +10,7 @@ const moyuCommand: CommandType = {
   func: "moyu",
   name: "摸鱼",
   options: [],
+  collapsible: true,
   action(options, terminal) {
     const output: ComponentOutputType = {
       type: "component",

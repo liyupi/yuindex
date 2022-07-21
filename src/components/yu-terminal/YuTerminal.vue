@@ -9,7 +9,7 @@
         <template v-for="(output, index) in outputList" :key="index">
           <!-- 折叠 -->
           <a-collapse-panel
-            v-if="output.resultList && output.resultList.length > 1"
+            v-if="output.collapsible"
             :key="index"
             class="terminal-row"
           >
@@ -296,6 +296,14 @@ const writeTextOutput = (text: string, status?: OutputStatusType) => {
 };
 
 /**
+ * 设置命令是否可折叠
+ * @param collapsible
+ */
+const setCommandCollapsible = (collapsible: boolean) => {
+  currentNewCommand.collapsible = collapsible;
+};
+
+/**
  * 立即输出
  * @param newOutput
  */
@@ -342,6 +350,7 @@ const terminal: TerminalType = {
   showPrevCommand,
   listCommandHistory,
   toggleAllCollapse,
+  setCommandCollapsible,
 };
 
 onMounted(() => {

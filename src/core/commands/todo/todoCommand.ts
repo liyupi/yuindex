@@ -22,6 +22,7 @@ const todoCommand: CommandType = {
   subCommands: {
     add: addCommand,
   },
+  collapsible: true,
   action(options, terminal) {
     const { _ } = options;
     if (_.length < 1) {

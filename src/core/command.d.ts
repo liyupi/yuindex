@@ -21,6 +21,8 @@ interface CommandType {
   subCommands?: Record<string, CommandType>;
   // 执行功能
   action: (options: ParsedOptions, terminal: TerminalType) => void;
+  // 结果是否允许折叠
+  collapsible?: boolean;
 }
 
 /**

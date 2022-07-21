@@ -18,6 +18,7 @@ const musicCommand: CommandType = {
     },
   ],
   options: [],
+  collapsible: true,
   action(options, terminal) {
     const { _ } = options;
     if (_.length < 1) {

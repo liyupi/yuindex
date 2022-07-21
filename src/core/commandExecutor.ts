@@ -93,6 +93,10 @@ const doAction = async (
   options: ParsedOptions,
   terminal: TerminalType
 ) => {
+  // 设置输出折叠
+  if (command.collapsible) {
+    terminal.setCommandCollapsible(true);
+  }
   const { _, help } = options;
   // 查看帮助
   // e.g. xxx --help => { _: ["xxx"] }

@@ -24,6 +24,7 @@ const listCommand: CommandType = {
       defaultValue: false,
     },
   ],
+  collapsible: true,
   action(options: ParsedOptions, terminal): void {
     const { _, recursive } = options;
     const { listItems, currentDir } = useSpaceStore();
