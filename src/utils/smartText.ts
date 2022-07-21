@@ -8,7 +8,7 @@ const URL_REG =
  * 识别文本中的超链接
  * @param text
  */
-const smartText = (text: string) => {
+const smartText = (text?: string) => {
   if (!text) {
     return text;
   }
