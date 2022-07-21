@@ -3,9 +3,20 @@ import { CommandOptionType, CommandType } from "../../command";
 /**
  * 拼接用法字符串
  * @param command
+ * @param parentCommand
  */
-export const getUsageStr = (command: CommandType) => {
-  let str = command.func;
+export const getUsageStr = (
+  command: CommandType,
+  parentCommand?: CommandType
+) => {
+  if (!command) {
+    return "";
+  }
+  let str = "";
+  if (parentCommand) {
+    str = parentCommand.func + " ";
+  }
+  str += command.func;
   if (command.params && command.params.length > 0) {
     const paramsStrList: string[] = command.params.map((param) => {
       let word = param.key;

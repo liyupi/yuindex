@@ -53,17 +53,17 @@ import { getUsageStr, getOptionKeyList } from "./helpUtils";
 
 interface HelpBoxProps {
   command: CommandType;
+  parentCommand: CommandType;
 }
 
 const props = withDefaults(defineProps<HelpBoxProps>(), {});
-const { command } = toRefs(props);
+const { command, parentCommand } = toRefs(props);
 
 /**
  * 拼接用法字符串
  */
 const usageStr = computed(() => {
-  let commandValue = command.value;
-  return getUsageStr(commandValue);
+  return getUsageStr(command.value, parentCommand.value);
 });
 
 onMounted(() => {});

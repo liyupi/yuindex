@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { getUsageStr } from "../../core/commands/help/helpUtils";
 import { commandMap } from "../../core/commandData";
-import _ from "lodash";
+import _, {trim} from "lodash";
 import { useTerminalConfigStore } from "../../core/commands/terminal/config/terminalConfigStore";
 
 /**
@@ -21,13 +21,23 @@ const useHint = () => {
       hint.value = "";
       return;
     }
-    const func = inputText.split(" ", 1)[0];
-    const command = commandMap[func];
+    const args = trim(inputText).split(" ");
+    const func = args[0];
+    let command = commandMap[func];
     if (!command) {
       hint.value = "";
       return;
     }
-    hint.value = getUsageStr(command);
+    // 子命令提示
+    if (
+      command.subCommands &&
+      Object.keys(command.subCommands).length > 0 &&
+      args.length > 1
+    ) {
+      hint.value = getUsageStr(command.subCommands[args[1]], command);
+    } else {
+      hint.value = getUsageStr(command);
+    }
   };
 
   /**

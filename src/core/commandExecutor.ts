@@ -8,18 +8,18 @@ import helpCommand from "./commands/help/helpCommand";
  * 执行命令
  * @param text 输入字符串
  * @param terminal 终端
- * @param commands 命令集
+ * @param parentCommand
  */
 export const doCommandExecute = async (
   text: string,
   terminal: TerminalType,
-  commands = commandMap
+  parentCommand?: CommandType
 ) => {
   if (!text) {
     return;
   }
   // 解析文本，得到命令
-  const command: CommandType = getCommand(text, commands);
+  const command: CommandType = getCommand(text, parentCommand);
   if (!command) {
     terminal.writeTextErrorResult("找不到命令");
     return;
@@ -35,20 +35,29 @@ export const doCommandExecute = async (
   ) {
     // 把子命令当做新命令解析，user login xxx => login xxx
     const subText = text.substring(text.indexOf(" ") + 1);
-    await doCommandExecute(subText, terminal, command.subCommands);
+    await doCommandExecute(subText, terminal, command);
     return;
   }
   // 执行命令
-  await doAction(command, parsedOptions, terminal);
+  await doAction(command, parsedOptions, terminal, parentCommand);
 };
 
 /**
  * 获取命令
  * @param text
- * @param commands
+ * @param parentCommand
  */
-const getCommand = (text: string, commands = commandMap): CommandType => {
+const getCommand = (text: string, parentCommand?: CommandType): CommandType => {
   const func = text.split(" ", 1)[0];
+  let commands = commandMap;
+  // 有父命令，则从父命令中查找
+  if (
+    parentCommand &&
+    parentCommand.subCommands &&
+    Object.keys(parentCommand.subCommands).length > 0
+  ) {
+    commands = parentCommand.subCommands;
+  }
   const command = commands[func];
   console.log("getCommand = ", command);
   return command;
@@ -87,11 +96,18 @@ const doParse = (
   return parsedOptions;
 };
 
-// 执行
+/**
+ * 执行
+ * @param command
+ * @param options
+ * @param terminal
+ * @param parentCommand
+ */
 const doAction = async (
   command: CommandType,
   options: ParsedOptions,
-  terminal: TerminalType
+  terminal: TerminalType,
+  parentCommand?: CommandType
 ) => {
   const { help } = options;
   // 设置输出折叠
@@ -102,7 +118,7 @@ const doAction = async (
   // e.g. xxx --help => { _: ["xxx"] }
   if (help) {
     const newOptions = { ...options, _: [command.func] };
-    helpCommand.action(newOptions, terminal);
+    helpCommand.action(newOptions, terminal, parentCommand);
     return;
   }
   await command.action(options, terminal);
