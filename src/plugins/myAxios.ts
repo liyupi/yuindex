@@ -1,8 +1,11 @@
 import axios from "axios";
 
+// 自定义 axios 实例
 const myAxios = axios.create({
-  baseURL: "https://api.example.com",
+  baseURL: "http://localhost:7345/api",
 });
+
+myAxios.defaults.withCredentials = true;
 
 // 添加请求拦截器
 myAxios.interceptors.request.use(
@@ -19,8 +22,9 @@ myAxios.interceptors.request.use(
 // 添加响应拦截器
 myAxios.interceptors.response.use(
   function (response) {
+    console.log(response);
     // 对响应数据做点什么
-    return response;
+    return response.data;
   },
   function (error) {
     // 对响应错误做点什么

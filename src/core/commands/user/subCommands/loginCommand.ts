@@ -1,4 +1,6 @@
 import { CommandType } from "../../../command";
+import { userLogin, userRegister } from "../userApi";
+import { useUserStore } from "../userStore";
 
 /**
  * 用户登录命令
@@ -23,7 +25,7 @@ const loginCommand: CommandType = {
       required: true,
     },
   ],
-  action(options, terminal) {
+  async action(options, terminal) {
     const { username, password } = options;
     if (!username) {
       terminal.writeTextErrorResult("请输入用户名");
@@ -33,8 +35,14 @@ const loginCommand: CommandType = {
       terminal.writeTextErrorResult("请输入密码");
       return;
     }
-    // todo 请求后端
-    terminal.writeTextSuccessResult("登录成功");
+    const res: any = await userLogin(username, password);
+    const { setLoginUser } = useUserStore();
+    if (res?.code === 0) {
+      setLoginUser(res.data);
+      terminal.writeTextSuccessResult("登录成功");
+    } else {
+      terminal.writeTextErrorResult(res?.message ?? "登录失败");
+    }
   },
 };
 

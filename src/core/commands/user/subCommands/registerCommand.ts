@@ -1,4 +1,6 @@
 import { CommandType } from "../../../command";
+import { getSingleMusic } from "../../music/musicApi";
+import { userRegister } from "../userApi";
 
 /**
  * 用户注册命令
@@ -30,7 +32,7 @@ const registerCommand: CommandType = {
       required: true,
     },
   ],
-  action(options, terminal) {
+  async action(options, terminal) {
     const { username, password, email } = options;
     if (!username) {
       terminal.writeTextErrorResult("请输入用户名");
@@ -44,8 +46,12 @@ const registerCommand: CommandType = {
       terminal.writeTextErrorResult("请输入邮箱");
       return;
     }
-    // todo 请求后端
-    terminal.writeTextSuccessResult("注册成功");
+    const res: any = await userRegister(username, password, email);
+    if (res?.code === 0) {
+      terminal.writeTextSuccessResult("注册成功");
+    } else {
+      terminal.writeTextErrorResult(res?.message ?? "注册失败");
+    }
   },
 };
 

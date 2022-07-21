@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import smartText from "../../plugins/smartText";
+import smartText from "../../utils/smartText";
 import OutputType = YuTerminal.OutputType;
 import { computed, toRefs } from "vue";
 

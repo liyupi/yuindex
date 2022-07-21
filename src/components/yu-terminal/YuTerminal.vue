@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, StyleValue, watchEffect } from "vue";
+import { computed, onMounted, ref, StyleValue, toRefs, watchEffect } from "vue";
 import CommandOutputType = YuTerminal.CommandOutputType;
 import OutputType = YuTerminal.OutputType;
 import CommandInputType = YuTerminal.CommandInputType;
@@ -91,10 +91,13 @@ import ContentOutput from "./ContentOutput.vue";
 import OutputStatusType = YuTerminal.OutputStatusType;
 import { useTerminalConfigStore } from "../../core/commands/terminal/config/terminalConfigStore";
 import useHint from "./hint";
+import UserType = User.UserType;
+import { LOCAL_USER } from "../../core/commands/user/userConstant";
 
 interface YuTerminalProps {
   height?: string | number;
   fullScreen?: boolean;
+  user?: UserType;
   // eslint-disable-next-line vue/require-default-prop
   onSubmitCommand?: (inputText: string) => void;
 }
@@ -102,7 +105,10 @@ interface YuTerminalProps {
 const props = withDefaults(defineProps<YuTerminalProps>(), {
   height: "400px",
   fullScreen: false,
+  user: LOCAL_USER as any,
 });
+
+const { user } = toRefs(props);
 
 const terminalRef = ref();
 const activeKeys = ref<number[]>([]);
@@ -111,7 +117,6 @@ const outputList = ref<OutputType[]>([]);
 // 命令列表
 const commandList = ref<CommandOutputType[]>([]);
 const commandInputRef = ref();
-const prompt = ref("[local]$");
 
 const configStore = useTerminalConfigStore();
 
@@ -188,6 +193,13 @@ const doSubmitCommand = async () => {
 // 输入框内容改变时，触发输入提示
 watchEffect(() => {
   debounceSetHint(inputCommand.value.text);
+});
+
+/**
+ * 输入提示符
+ */
+const prompt = computed(() => {
+  return `[${user.value.username}]$`;
 });
 
 /**
