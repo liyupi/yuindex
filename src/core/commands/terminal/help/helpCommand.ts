@@ -1,6 +1,6 @@
-import { CommandType } from "../../command";
+import { CommandType } from "../../../command";
 import { defineAsyncComponent } from "vue";
-import { commandMap } from "../../commandData";
+import { commandMap } from "../../../commandData";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**

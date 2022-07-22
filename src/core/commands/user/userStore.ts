@@ -31,6 +31,7 @@ export const useUserStore = defineStore("user", {
         this.loginUser = res.data;
       } else {
         console.error("登录失败");
+        this.$reset();
       }
     },
     setLoginUser(user: UserType) {

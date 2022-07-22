@@ -10,7 +10,7 @@ import timingCommand from "./commands/timing/timingCommand";
 import backgroundCommand from "./commands/terminal/config/backgroundCommand";
 import resetCommand from "./commands/terminal/config/resetCommand";
 import fanyiCommand from "./commands/fanyi/fanyiCommand";
-import helpCommand from "./commands/help/helpCommand";
+import helpCommand from "./commands/terminal/help/helpCommand";
 import infoCommand from "./commands/terminal/info/infoCommand";
 import pingCommand from "./commands/pingCommand";
 import hintCommand from "./commands/terminal/config/hintCommand";
@@ -18,11 +18,13 @@ import todoCommand from "./commands/todo/todoCommand";
 import musicCommand from "./commands/music/musicCommand";
 import ddosCommand from "./commands/ddos/ddosCommand";
 import moyuCommand from "./commands/moyu/moyuCommand";
+import shortcutCommand from "./commands/terminal/shortcut/shortcutCommand";
 
 /**
  * 命令列表（数组元素顺序会影响 help 命令的展示顺序）
  */
 const commandList: CommandType[] = [
+  shortcutCommand,
   gotoCommand,
   ...searchCommands,
   ...spaceCommands,

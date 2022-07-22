@@ -1,7 +1,7 @@
 import { ref } from "vue";
-import { getUsageStr } from "../../core/commands/help/helpUtils";
+import { getUsageStr } from "../../core/commands/terminal/help/helpUtils";
 import { commandMap } from "../../core/commandData";
-import _, {trim} from "lodash";
+import _, { trim } from "lodash";
 import { useTerminalConfigStore } from "../../core/commands/terminal/config/terminalConfigStore";
 
 /**

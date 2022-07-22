@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, toRefs } from "vue";
-import { CommandType } from "../../command";
+import { CommandType } from "../../../command";
 import { getUsageStr, getOptionKeyList } from "./helpUtils";
 
 interface HelpBoxProps {

@@ -2,7 +2,7 @@ import getopts, { ParsedOptions } from "getopts";
 import { commandMap } from "./commandData";
 import { CommandOptionType, CommandType } from "./command";
 import TerminalType = YuTerminal.TerminalType;
-import helpCommand from "./commands/help/helpCommand";
+import helpCommand from "./commands/terminal/help/helpCommand";
 
 /**
  * 执行命令

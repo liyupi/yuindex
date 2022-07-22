@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { commandList } from "../../commandData";
+import { commandList } from "../../../commandData";
 
 onMounted(() => {});
 </script>

@@ -1,5 +1,6 @@
 /**
  * 快捷键系统
+ * @author yupi
  */
 import TerminalType = YuTerminal.TerminalType;
 
@@ -7,9 +8,9 @@ import TerminalType = YuTerminal.TerminalType;
  * 注册快捷键
  * @param terminal
  */
-export const registerShortCuts = (terminal: TerminalType) => {
+export const registerShortcuts = (terminal: TerminalType) => {
   document.onkeydown = (e) => {
-    // console.log(e);
+    console.log(e);
     let key = e.key;
     // 自动聚焦输入框
     if (key >= "a" && key <= "z" && !e.metaKey && !e.shiftKey && !e.ctrlKey) {
@@ -18,14 +19,14 @@ export const registerShortCuts = (terminal: TerminalType) => {
     }
     // 匹配快捷键
     let code = e.code;
-    for (const shortCut of shortCutList) {
+    for (const shortcut of shortcutList) {
       if (
-        code === shortCut.code &&
-        e.ctrlKey == !!shortCut.ctrlKey &&
-        e.metaKey == !!shortCut.metaKey &&
-        e.shiftKey == !!shortCut.shiftKey
+        code === shortcut.code &&
+        e.ctrlKey == !!shortcut.ctrlKey &&
+        e.metaKey == !!shortcut.metaKey &&
+        e.shiftKey == !!shortcut.shiftKey
       ) {
-        shortCut.action(e, terminal);
+        shortcut.action(e, terminal);
       }
     }
   };
@@ -34,8 +35,10 @@ export const registerShortCuts = (terminal: TerminalType) => {
 /**
  * 快捷键类型
  */
-interface ShortCutType {
-  code: string;
+interface ShortcutType {
+  code: string; // 按键码
+  desc?: string; // 功能描述
+  keyDesc?: string; // 按键描述
   ctrlKey?: boolean;
   metaKey?: boolean;
   shiftKey?: boolean;
@@ -45,9 +48,11 @@ interface ShortCutType {
 /**
  * 快捷键列表
  */
-const shortCutList: ShortCutType[] = [
+export const shortcutList: ShortcutType[] = [
   {
+    desc: "清屏",
     code: "KeyL",
+    keyDesc: "Ctrl + L",
     ctrlKey: true,
     action(e, terminal) {
       e.preventDefault();
@@ -55,15 +60,9 @@ const shortCutList: ShortCutType[] = [
     },
   },
   {
-    code: "KeyL",
-    metaKey: true,
-    action(e, terminal) {
-      e.preventDefault();
-      terminal.clear();
-    },
-  },
-  {
+    desc: "折叠",
     code: "KeyO",
+    keyDesc: "Ctrl + O",
     ctrlKey: true,
     action(e, terminal) {
       e.preventDefault();
@@ -71,7 +70,9 @@ const shortCutList: ShortCutType[] = [
     },
   },
   {
+    desc: "粘贴",
     code: "KeyV",
+    keyDesc: "Ctrl + V",
     metaKey: true,
     action(e, terminal) {
       terminal.focusInput();
@@ -97,14 +98,18 @@ const shortCutList: ShortCutType[] = [
     },
   },
   {
+    desc: "查看上一条命令",
     code: "ArrowUp",
+    keyDesc: "↑",
     action(e, terminal) {
       e.preventDefault();
       terminal.showPrevCommand();
     },
   },
   {
+    desc: "查看下一条命令",
     code: "ArrowDown",
+    keyDesc: "↓",
     action(e, terminal) {
       e.preventDefault();
       terminal.showNextCommand();

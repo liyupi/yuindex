@@ -83,7 +83,7 @@ import { computed, onMounted, ref, StyleValue, toRefs, watchEffect } from "vue";
 import CommandOutputType = YuTerminal.CommandOutputType;
 import OutputType = YuTerminal.OutputType;
 import CommandInputType = YuTerminal.CommandInputType;
-import { registerShortCuts } from "./shortcuts";
+import { registerShortcuts } from "./shortcuts";
 import TerminalType = YuTerminal.TerminalType;
 import TextOutputType = YuTerminal.TextOutputType;
 import useHistory from "./history";
@@ -354,16 +354,15 @@ const terminal: TerminalType = {
 };
 
 onMounted(() => {
-  registerShortCuts(terminal);
+  registerShortcuts(terminal);
   terminal.writeTextOutput(
-    "Welcome to YuIndex，coolest browser index for geeks!"
+    `Welcome to YuIndex, coolest browser index for geeks!` +
+      `<a href="https://github.com/liyupi/yuindex" target='_blank'> GitHub Open Source</a>`
   );
   terminal.writeTextOutput(
     `Author <a href="https://docs.qq.com/doc/DUFFRVWladXVjeUxW" target="_blank">coder_yupi</a>` +
-      " | " +
-      `<a href="https://github.com/liyupi/yuindex" target='_blank'> GitHub Open Source</a>`
+      `: please input 'help' to enjoy`
   );
-  terminal.writeTextOutput(`Please input 'help' to enjoy`);
   terminal.writeTextOutput("<br/>");
 });
 
