@@ -1,5 +1,5 @@
 import getopts, { ParsedOptions } from "getopts";
-import { commandMap } from "./commandData";
+import { commandMap } from "./commandRegister";
 import { CommandOptionType, CommandType } from "./command";
 import TerminalType = YuTerminal.TerminalType;
 import helpCommand from "./commands/terminal/help/helpCommand";
@@ -43,7 +43,7 @@ export const doCommandExecute = async (
 };
 
 /**
- * 获取命令
+ * 获取命令（匹配）
  * @param text
  * @param parentCommand
  */
