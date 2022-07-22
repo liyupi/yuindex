@@ -1,8 +1,12 @@
 # YuIndex 后端
 
+> 欢迎加入 [鱼皮的编程知识星球](https://yupi.icu/) ，获取完整的项目讲解，帮助你更好地学编程
+
 [[toc]]
 
 ## 技术栈
+
+主要技术：
 
 - Node.js
 - Express、express-session

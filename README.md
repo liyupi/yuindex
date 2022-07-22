@@ -6,6 +6,8 @@
 
 all in one 
 
+## 是什么？
+
 在一个终端里做所有的事情（极客风）
 
 我做了个很特别的浏览器主页 yuindex
@@ -17,13 +19,24 @@ Linux 的原汁原味儿~
 
 在线体验：[https://yuindex.com](https://yuindex.com)
 
+## 为什么要自己写终端？
+
+1. 本来打算使用现成的 xterm.js，但实际使用中发现它的文档比较少、问题难解决（比如中文字符），解决问题消耗的时间足够自己写一套新的 web 终端了。而且它更适用于和后端服务器强交互的场景，与本项目的定位不符。
+2. 开源的 web 终端很少，给开源贡献一份力。
+3. 帮助自己复习 Vue，突破个人系统开发设计能力的边界。
+
+
 ## 项目优势
 
 ### 用户
 
 ### 开发者
 
+hint 
+
 ### 学习者
+
+- 逻辑抽象和复用
 
 ## 功能和特性
 
@@ -31,13 +44,50 @@ Linux 的原汁原味儿~
 
 ## 技术栈
 
-vue 3 + vite 2 + xterm.js 4.x + pinia
+### 前端
+
+主要技术：
+
+- Vue 3
+- Vite 2
+- Ant Design Vue 3 组件库
+- Pinia 2 状态管理
+- TypeScript 类型控制
+- Eslint 代码规范控制
+- Prettier 美化代码
+
+依赖库：
+
+- axios 网络请求
+- dayjs 时间处理
+- lodash 工具库
+- getopts 命令参数解析
 
 库：getopts
 
 
+### 后端
+
+主要技术：
+
+- Node.js
+- Express、express-session
+- MySQL
+- Sequelize（ORM 框架）
+- Redis
+
+依赖库：
+
+- Axios
+- NeteaseCloudMusicApi
+
+[点击了解后端详情](server/README.md)
+
+## 目录结构
 
 ## 系统设计
+
+### 核心
 
 - 文件系统
 - 微终端
@@ -158,7 +208,9 @@ space 命令：类似文件系统
 
 自实现控制台
 
-## 如何开发扩展？
+## 贡献指南
+
+如何开发扩展？
 
 （alias 系统）
 
@@ -203,6 +255,3 @@ todo ！快速执行命令 ✅
 
 【自定义命令】（比如自定义搜索引擎）、配置默认值
 
-## 感受
-
-为什么弃用 xterm.js ？文档比较少，问题难解决！
