@@ -8,9 +8,9 @@
 
 在线体验：[https://yuindex.com](https://yuindex.com)
 
-![YuIndex 定制你的最强主页](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/1/image-20220722183849805.png)
+![YuIndex 定制你的最强主页](./doc/assets/docpic1.png)
 
-![YuIndex 用命令来控制网页](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/1/image-20220722185540476.png)
+![YuIndex 用命令来控制网页](./doc/assets/docpic2.png)
 
 
 
@@ -26,9 +26,9 @@
 
 你可以将音乐、游戏，甚至可以将自己的偶像封装到主页~
 
-![](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/1/image-20220723152408595.png)
+![](./doc/assets/docpic3.png)
 
-![](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/1/image-20220723152313947.png)
+![](./doc/assets/docpic4.png)
 
 
 
@@ -227,7 +227,7 @@ history
 
 前端架构图：
 
-![](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/1/image-20220722221207494.png)
+![](./doc/assets/docpic5.png)
 
 
 
