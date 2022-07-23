@@ -54,7 +54,7 @@ history
 
 使用 `shortcut` 可以查看所有的快捷键。
 
-> 完整命令用法请见：[命令手册](./doc/command.ts)
+> 完整命令用法请见：[命令手册](./doc/commands.md)
 
 尽情探索吧~
 
@@ -107,7 +107,7 @@ history
 
 ### 已支持命令
 
-> 完整命令用法请见：[命令手册](./doc/command.ts)
+> 完整命令用法请见：[命令手册](./doc/commands.md)
 
 - 多平台搜索 search
 - 网页快速跳转 goto
