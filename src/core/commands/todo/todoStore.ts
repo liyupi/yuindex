@@ -9,17 +9,12 @@ export const useTodoStore = defineStore("todo", {
     // 任务列表
     taskList: [
       {
-        name: "吃饭",
+        name: "写下你要做的事",
         isFinished: false,
         createTime: new Date(),
       },
       {
-        name: "吃饭",
-        isFinished: false,
-        createTime: new Date(),
-      },
-      {
-        name: "吃饭",
+        name: "已完成的事项",
         isFinished: true,
         createTime: new Date(),
       },

@@ -34,7 +34,7 @@ const commandList: CommandType[] = [
   dateCommand,
   clearCommand,
   historyCommand,
-  fanyiCommand,
+  // fanyiCommand,
   helpCommand,
   infoCommand,
   pingCommand,

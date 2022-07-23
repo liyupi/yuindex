@@ -3,7 +3,7 @@ import { defineAsyncComponent } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**
- * 翻译命令
+ * 翻译命令 todo 待实现
  * @author yupi
  */
 const fanyiCommand: CommandType = {
