@@ -306,5 +306,5 @@ history
 
 ## 致谢
 
-摸鱼命令的实现依赖于 https://haiyong.site/moyu，感谢大佬的开源分享。
+摸鱼命令的实现依赖于 https://haiyong.site/moyu ，感谢大佬的开源分享。
 
