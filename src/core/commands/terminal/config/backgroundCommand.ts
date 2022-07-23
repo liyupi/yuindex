@@ -1,6 +1,7 @@
 import { CommandType } from "../../../command";
 import { useTerminalConfigStore } from "./terminalConfigStore";
 import axios from "axios";
+import myAxios from "../../../../plugins/myAxios";
 
 /**
  * 切换终端背景
@@ -13,7 +14,7 @@ const backgroundCommand: CommandType = {
   params: [
     {
       key: "url",
-      desc: "图片地址",
+      desc: "图片地址（不填则随机）",
       required: false,
     },
   ],
@@ -24,13 +25,12 @@ const backgroundCommand: CommandType = {
     if (_.length > 0) {
       url = _[0];
     }
-    if (!url) {
-      // 随机获取壁纸 todo 需要代理
-      const api = "https://api.btstu.cn/sjbz/api.php?lx=dongman&format=images";
-      const res = await axios.get(api);
-      console.log(res);
-    }
     const { setBackground } = useTerminalConfigStore();
+    if (!url) {
+      // 随机获取壁纸
+      const res = await myAxios.post("/background/get/random");
+      setBackground(res.data);
+    }
     setBackground(url);
   },
 };

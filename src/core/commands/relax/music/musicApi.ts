@@ -1,4 +1,4 @@
-import myAxios from "../../../plugins/myAxios";
+import myAxios from "../../../../plugins/myAxios";
 
 /**
  * 搜索单条音乐

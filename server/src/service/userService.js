@@ -102,5 +102,5 @@ async function userLogin(username, password, req) {
 module.exports = {
   userRegister,
   userLogin,
-  getAndSetLoginUser: getLoginUser,
+  getLoginUser,
 };

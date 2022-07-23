@@ -15,10 +15,11 @@ import infoCommand from "./commands/terminal/info/infoCommand";
 import pingCommand from "./commands/pingCommand";
 import hintCommand from "./commands/terminal/config/hintCommand";
 import todoCommand from "./commands/todo/todoCommand";
-import musicCommand from "./commands/music/musicCommand";
+import musicCommand from "./commands/relax/music/musicCommand";
 import ddosCommand from "./commands/ddos/ddosCommand";
-import moyuCommand from "./commands/moyu/moyuCommand";
+import moyuCommand from "./commands/relax/moyu/moyuCommand";
 import shortcutCommand from "./commands/terminal/shortcut/shortcutCommand";
+import ikunCommand from "./commands/relax/ikun/ikunCommand";
 
 /**
  * 命令列表（数组元素顺序会影响 help 命令的展示顺序）
@@ -34,13 +35,14 @@ const commandList: CommandType[] = [
   dateCommand,
   clearCommand,
   historyCommand,
-  // fanyiCommand,
+  fanyiCommand,
   helpCommand,
   infoCommand,
   pingCommand,
   musicCommand,
   ddosCommand,
   moyuCommand,
+  ikunCommand,
   backgroundCommand,
   resetCommand,
   hintCommand,

@@ -1,4 +1,6 @@
-import { CommandType } from "../../command";
+import { CommandType } from "../../../command";
+import { defineAsyncComponent } from "vue";
+import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 const baseUrl = "https://www.baidu.com/s";
 
@@ -25,9 +27,27 @@ const bilibiliCommand: CommandType = {
       type: "boolean",
       defaultValue: false,
     },
+    {
+      key: "bvid",
+      desc: "B站视频id",
+      alias: ["b"],
+      type: "string",
+    },
   ],
   action(options, terminal) {
-    const { _, self } = options;
+    const { _, self, bvid } = options;
+    // 优先打开视频
+    if (bvid) {
+      const output: ComponentOutputType = {
+        type: "component",
+        component: defineAsyncComponent(() => import("./BilibiliBox.vue")),
+        props: {
+          bvid,
+        },
+      };
+      terminal.writeResult(output);
+      return;
+    }
     const word = _.length > 0 ? _[0] : "";
     const targetLink = `https://search.bilibili.com/all?keyword=${word}`;
     if (self) {

@@ -1,7 +1,7 @@
 import { CommandType } from "../../command";
 import baiduCommand from "./baiduCommand";
 import baidudevCommand from "./baidudevCommand";
-import bilibiliCommand from "./bilibiliCommand";
+import bilibiliCommand from "./bilibili/bilibiliCommand";
 import bingCommand from "./bingCommand";
 import codenavCommand from "./codenavCommand";
 import doubanCommand from "./doubanCommand";

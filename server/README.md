@@ -17,6 +17,11 @@
 - Axios
 - NeteaseCloudMusicApi
 
+依赖服务：
+
+- 百度翻译 API
+- 新浪壁纸 API
+
 ### 为什么选 Node.js 做后端？
 
 1. 相对 Java 启动更快、调试更方便

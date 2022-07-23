@@ -24,6 +24,14 @@
 
 
 
+你可以将音乐、游戏，甚至可以将自己的偶像封装到主页~
+
+![](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/1/image-20220723152408595.png)
+
+![](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/1/image-20220723152313947.png)
+
+
+
 ### 1 分钟上手使用
 
 请打开网站：https://yuindex.com
@@ -37,7 +45,7 @@ goto yupi.icu
 todo
 music 坤坤
 moyu
-按键 Ctrl + O 触发折叠，再按可展开
+按键 Ctrl + O 触发折叠, 再按可展开
 history
 按键 Ctrl + L 清屏
 ```
@@ -92,7 +100,7 @@ history
 - 内置 5 种输出状态
 - 命令折叠
 - 帮助手册生成
-- 自定义配置（比如背景、提示开关等）
+- 自定义配置（比如更换背景、提示开关等）
 - 支持子命令
 
 
@@ -101,15 +109,19 @@ history
 
 > 完整命令用法请见：[命令手册](./doc/command.ts)
 
-- 多平台搜索
-- 网页快速跳转
+- 多平台搜索 search
+- 网页快速跳转 goto
 - 空间管理（类似收藏夹，可以存储网页信息）
-- 查看日期
-- 听音乐
-- 摸鱼小游戏
-- 待办事项
-- 网络检测
-- 定时器
+- 查看日期 date
+- 翻译 fanyi
+- 待办事项 todo
+- 网络检测 ping
+- 定时器 timing
+- 更换背景 background
+- 听音乐 music
+- 摸鱼小游戏 moyu
+- 坤坤 ikun
+- 其他。。。
 
 
 
@@ -153,6 +165,11 @@ history
 
 - Axios
 - NeteaseCloudMusicApi
+
+依赖服务：
+
+- 百度翻译 API
+- 新浪壁纸 API
 
 [点击了解后端详情](server/README.md)
 
@@ -290,5 +307,4 @@ history
 ## 致谢
 
 摸鱼命令的实现依赖于 https://haiyong.site/moyu，感谢大佬的开源分享。
-
 

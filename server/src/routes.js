@@ -23,6 +23,15 @@ const routes = [
     path: "/music/get",
     handler: require("./controller/musicController").getSingleMusicApi,
   },
+  {
+    path: "/fanyi/translate",
+    handler: require("./controller/fanyiController").translateApi,
+  },
+  {
+    path: "/background/get/random",
+    handler: require("./controller/backgroundController")
+      .getRandomBackgroundApi,
+  },
 ];
 
 module.exports = routes;
