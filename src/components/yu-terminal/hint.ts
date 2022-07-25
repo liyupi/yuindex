@@ -23,7 +23,8 @@ const useHint = () => {
     }
     const args = trim(inputText).split(" ");
     const func = args[0];
-    let command = commandMap[func];
+    const likeKey = Object.keys(commandMap).filter(key => key.indexOf(func) === 0)[0];
+    let command =  commandMap[likeKey];
     if (!command) {
       hint.value = "";
       return;

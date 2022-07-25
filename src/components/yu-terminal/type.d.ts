@@ -71,6 +71,10 @@ declare namespace YuTerminal {
     writeResult: (output: OutputType) => void;
     // 输入框聚焦
     focusInput: () => void;
+    // 获取输入框是否聚焦
+    isInputFocused: () => boolean;
+    // 设置输入框的值
+    setTabCompletion: () => void;
     // 提交命令
     doSubmitCommand: () => void;
     // 查看下一条命令
