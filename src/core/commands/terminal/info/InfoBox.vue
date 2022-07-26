@@ -1,16 +1,13 @@
 <template>
-  <div>关于本站：YuIndex 极客范儿的浏览器主页</div>
+  <div>关于本站：YuIndex-PLUS 极客范儿的浏览器主页</div>
   <div>
-    <a href="https://github.com/liyupi/yuindex" target="_blank">
+    <a href="https://github.com/tonywdy/yuindex-plus" target="_blank">
       代码开源，欢迎 star 和贡献~
     </a>
   </div>
   <div></div>
   <div>
-    作者：
-    <a href="https://docs.qq.com/doc/DUFFRVWladXVjeUxW" target="_blank">
-      程序员鱼皮
-    </a>
+    作者：程序员鱼皮 PLUS作者：kingwdy
   </div>
 </template>
 
