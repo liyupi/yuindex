@@ -361,7 +361,7 @@ onMounted(() => {
   );
   terminal.writeTextOutput(
     `Author <a href="//docs.qq.com/doc/DUFFRVWladXVjeUxW" target="_blank">coder_yupi</a>` +
-    `PLUS Author <a href="kwblog.vercel.app" target="_blank">kingwdy</a>` +
+    `PLUS Author <a href="//kwblog.vercel.app" target="_blank">kingwdy</a>` +
       `: please input 'help' to enjoy`
   );
   terminal.writeTextOutput("<br/>");
