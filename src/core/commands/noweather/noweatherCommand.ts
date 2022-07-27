@@ -3,8 +3,8 @@ import { defineAsyncComponent } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**
- * DDOS 命令（整活）
- * @author yupi
+ * 查看现在天气
+ * @author kingwdy
  */
 const ddosCommand: CommandType = {
   func: "noweather",
