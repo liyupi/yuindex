@@ -17,6 +17,7 @@ import hintCommand from "./commands/terminal/config/hintCommand";
 import todoCommand from "./commands/todo/todoCommand";
 import musicCommand from "./commands/relax/music/musicCommand";
 import ddosCommand from "./commands/ddos/ddosCommand";
+import ddosCommand from "./commands/noweather/noweatherCommand";
 import moyuCommand from "./commands/relax/moyu/moyuCommand";
 import shortcutCommand from "./commands/terminal/shortcut/shortcutCommand";
 import ikunCommand from "./commands/relax/ikun/ikunCommand";
