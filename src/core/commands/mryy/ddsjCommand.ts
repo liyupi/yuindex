@@ -7,9 +7,9 @@ import ComponentOutputType = YuTerminal.ComponentOutputType;
  * @author kingwdy
  */
 const ddosCommand: CommandType = {
-  func: "mryy",
-  name: "每日一言",
-  desc: "每日一言",
+  func: "ddsj",
+  name: "读懂世界",
+  desc: "每天60秒读懂世界API接口",
   options: [],
   action(options, terminal) {
     const output: ComponentOutputType = {
