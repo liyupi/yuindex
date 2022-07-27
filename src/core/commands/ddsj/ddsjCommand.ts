@@ -14,7 +14,7 @@ const ddosCommand: CommandType = {
   action(options, terminal) {
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./MryyBox.vue")),
+      component: defineAsyncComponent(() => import("./DdsjBox.vue")),
       props: {},
     };
     terminal.writeResult(output);
