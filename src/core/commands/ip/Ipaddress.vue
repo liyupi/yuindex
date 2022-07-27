@@ -1,7 +1,8 @@
 <template>
   <div>
     <div>Detection succeeded! Next for your IP！</div>
-    <img src="https://www.ouklc.com/api/ip">
+    <div>Thank tool.lu for providing IP query service!</div>
+    <img src="https://tool.lu/netcard/">
   </div>
 </template>
 
