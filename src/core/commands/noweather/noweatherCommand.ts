@@ -10,6 +10,7 @@ const ddosCommand: CommandType = {
   func: "noweather",
   name: "noweather",
   desc: "查看现在天气",
+  alias: ["nw"],
   options: [],
   action(options, terminal) {
     const output: ComponentOutputType = {
