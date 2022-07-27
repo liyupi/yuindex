@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p>施工中！</p>
+    <p>本项目目前为bate，不是很稳定！</p>
+    <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tt&skin=pitaya" frameborder="0" width="590" height="98" allowtransparency="true"></iframe>
   </div>
 </template>
 
