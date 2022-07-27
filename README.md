@@ -124,6 +124,7 @@ history
 - 摸鱼小游戏 moyu
 - 坤坤 ikun
 - [new]更新天气查询命令 noweather
+- [new]添加每日60秒读懂世界 ddsj
 - 其他。。。
 
 
@@ -173,6 +174,7 @@ history
 
 - 百度翻译 API
 - 新浪壁纸 API
+- 韩小韩 API
 
 [点击了解后端详情](server/README.md)
 
@@ -310,4 +312,6 @@ history
 ## 致谢
 
 摸鱼命令的实现依赖于 https://haiyong.site/moyu ，感谢大佬的开源分享。
+读懂世界的实现依赖于 https://api.vvhan.com/60s.html, 感谢韩小韩的api。
+今日天气的实现依赖于[全球天气网](https://www.tianqi.com),感谢全球天气网提供天气插件。
 
