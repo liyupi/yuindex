@@ -83,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, Ref, ref, StyleValue, toRefs, watchEffect } from "vue";
+import { computed, onMounted, ref, StyleValue, toRefs, watchEffect } from "vue";
 import CommandOutputType = YuTerminal.CommandOutputType;
 import OutputType = YuTerminal.OutputType;
 import CommandInputType = YuTerminal.CommandInputType;
@@ -315,20 +315,7 @@ const writeOutput = (newOutput: OutputType) => {
   outputList.value.push(newOutput);
 };
 
-/**
- * 获取输入框是否聚焦
- */
-const isInputFocused = () => {
-  return (commandInputRef.value.input as HTMLInputElement) == document.activeElement
-}
-/**
- * 设置输入框的值
- */
-const setTabCompletion = () => {
-  if(hint.value){
-    inputCommand.value.text =`${hint.value.split(' ')[0]}${hint.value.split(' ').length > 1 ? ' ' : ''}`
-  }
-}
+
 
 /**
  * 输入框聚焦
@@ -364,8 +351,6 @@ const terminal: TerminalType = {
   writeOutput,
   clear,
   focusInput,
-  isInputFocused,
-  setTabCompletion,
   doSubmitCommand,
   showNextCommand,
   showPrevCommand,
