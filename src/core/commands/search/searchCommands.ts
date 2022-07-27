@@ -11,6 +11,9 @@ import googleCommand from "./googleCommand";
 import wangyiyunCommand from "./wangyiyunCommand";
 import zhihuCommand from "./zhihuCommand";
 import gengCommand from "./gengCommand";
+import duckduckgoCommand from "./duckduckgoCommand";
+import fsearchCommand from "./fsearchCommand";
+import sogouCommand from "./sogouCommand";
 
 /**
  * 搜索源
@@ -23,8 +26,11 @@ const fromDict: Record<string, CommandType> = {
   codenav: codenavCommand,
   douban: doubanCommand,
   douyin: douyinCommand,
+  duckduckgo: duckduckgoCommand,
+  fsearch: fsearchCommand,
   github: githubCommand,
   google: googleCommand,
+  sogou: sogouCommand,
   wangyiyun: wangyiyunCommand,
   zhihu: zhihuCommand,
   geng: gengCommand,
