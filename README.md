@@ -123,6 +123,7 @@ history
 - 听音乐 music
 - 摸鱼小游戏 moyu
 - 坤坤 ikun
+- [new]更新天气查询命令 noweather
 - 其他。。。
 
 
