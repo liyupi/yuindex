@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-is="'script'">
-    src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8">
+    type="text/javascript" 
+    src="https://api.vvhan.com/api/ian?type=js"
     </div>
   </div>
 </template>
