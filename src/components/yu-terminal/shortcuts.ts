@@ -10,7 +10,7 @@ import TerminalType = YuTerminal.TerminalType;
  */
 export const registerShortcuts = (terminal: TerminalType) => {
   document.onkeydown = (e) => {
-    console.log(e);
+    // console.log(e);
     let key = e.key;
     // 自动聚焦输入框
     if (key >= "a" && key <= "z" && !e.metaKey && !e.shiftKey && !e.ctrlKey) {
@@ -82,7 +82,11 @@ export const shortcutList: ShortcutType[] = [
     code: "Tab",
     action(e, terminal) {
       e.preventDefault();
-      terminal.focusInput();
+      if (terminal.isInputFocused()) {
+        terminal.setTabCompletion();
+      } else {
+        terminal.focusInput();
+      }
     },
   },
   {
