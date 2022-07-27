@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div v-is="'script'">
-    type="text/javascript" 
-    src="https://api.vvhan.com/api/ian?type=js"
-    </div>
+    <img src="https://api.vvhan.com/api/60s"/>
   </div>
 </template>
 
