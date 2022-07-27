@@ -1,4 +1,5 @@
-# YuIndex - 极客范儿的浏览器主页
+# YuIndex-plus
+# - 极客范儿的浏览器主页
 
 > Coolest browser index for geeks! 
 > 
@@ -16,7 +17,7 @@
 
 
 
-## YuIndex 是什么？
+## YuIndex-plus 是什么？
 
 一个很特别的浏览器主页，支持使用输入命令的方式来操作，目标是帮你在一个 web 终端中高效完成所有的事情！（all in one）
 
@@ -36,7 +37,7 @@
 
 ### 1 分钟上手使用
 
-请打开网站：https://yuindex.com
+请打开网站：https://yuindex-plus.vercel.app
 
 然后在网站内依次输入以下命令：
 
@@ -311,7 +312,9 @@ history
 
 ## 致谢
 
-摸鱼命令的实现依赖于 https://haiyong.site/moyu ，感谢大佬的开源分享。
-读懂世界的实现依赖于 https://api.vvhan.com/60s.html, 感谢韩小韩的api。
-今日天气的实现依赖于[全球天气网](https://www.tianqi.com),感谢全球天气网提供天气插件。
+> 摸鱼命令的实现依赖于 https://haiyong.site/moyu ，感谢大佬的开源分享。
+
+> 读懂世界的实现依赖于 https://api.vvhan.com/60s.html, 感谢韩小韩的api。
+
+> 今日天气的实现依赖于[全球天气网](https://www.tianqi.com),感谢全球天气网提供天气插件。
 
