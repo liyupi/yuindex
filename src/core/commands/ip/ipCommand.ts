@@ -15,7 +15,7 @@ const ddosCommand: CommandType = {
   action(options, terminal) {
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./IpBox.vue")),
+      component: defineAsyncComponent(() => import("./Ipaddress.vue")),
       props: {},
     };
     terminal.writeResult(output);
