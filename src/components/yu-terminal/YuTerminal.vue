@@ -1,5 +1,9 @@
 <template>
-  <div class="yu-terminal-wrapper" :style="wrapperStyle">
+   <div
+    class="yu-terminal-wrapper"
+    :style="wrapperStyle"
+    @click="handleClickWrapper($event)"
+  >
     <div ref="terminalRef" class="yu-terminal" :style="mainStyle">
       <a-collapse
         v-model:activeKey="activeKeys"
@@ -366,7 +370,15 @@ onMounted(() => {
   );
   terminal.writeTextOutput("<br/>");
 });
-
+/**
+ * 当点击空白聚焦输入框
+ */
+function handleClickWrapper(event: Event): void {
+  //@ts-ignore
+  if (event.target.className === "yu-terminal") {
+    focusInput();
+  }
+}
 defineExpose({
   terminal,
 });
