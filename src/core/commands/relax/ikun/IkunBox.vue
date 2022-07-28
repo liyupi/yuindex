@@ -14,7 +14,7 @@ const getBlob = () => {
     const xhr = new XMLHttpRequest();
     xhr.open(
       "GET",
-      "https://cdn.jsdelivr.net/gh/tonywdy/yuindex-PLUS@master/src/core/commands/relax/ikun/ikun.mp4",
+      "./ikun.mp4",
       true
     );
     xhr.responseType = "blob";
