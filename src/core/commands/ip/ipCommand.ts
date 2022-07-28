@@ -11,6 +11,7 @@ const ddosCommand: CommandType = {
   name: "ip查询",
   alias: ["ip"],
   desc: "ip查询",
+  collapsible: true,
   options: [],
   action(options, terminal) {
     const output: ComponentOutputType = {
