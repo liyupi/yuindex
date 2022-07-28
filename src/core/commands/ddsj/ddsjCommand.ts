@@ -10,6 +10,11 @@ const ddosCommand: CommandType = {
   func: "ddsj",
   name: "读懂世界",
   desc: "每天60秒读懂世界API接口",
+  params: [
+    {
+      required: true,
+    },
+  ],
   options: [],
   action(options, terminal) {
     const output: ComponentOutputType = {
