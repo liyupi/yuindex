@@ -2,7 +2,7 @@
   <div
     class="yu-terminal-wrapper"
     :style="wrapperStyle"
-    @click="handleClickWrapper($event)"
+    @click="handleClickWrapper"
   >
     <div ref="terminalRef" class="yu-terminal" :style="mainStyle">
       <a-collapse
@@ -380,6 +380,7 @@ onMounted(() => {
     terminal.writeTextOutput("<br/>");
   }
 });
+
 /**
  * 当点击空白聚焦输入框
  */
@@ -389,6 +390,7 @@ function handleClickWrapper(event: Event): void {
     focusInput();
   }
 }
+
 defineExpose({
   terminal,
 });
