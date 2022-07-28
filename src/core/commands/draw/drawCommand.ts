@@ -11,6 +11,7 @@ const ddosCommand: CommandType = {
   name: "在线画板",
   desc: "在线画板",
   alias: ["dw"],
+  collapsible: true,
   options: [],
   action(options, terminal) {
     const output: ComponentOutputType = {
