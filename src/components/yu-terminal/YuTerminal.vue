@@ -315,8 +315,6 @@ const writeOutput = (newOutput: OutputType) => {
   outputList.value.push(newOutput);
 };
 
-
-
 /**
  * 输入框聚焦
  */
