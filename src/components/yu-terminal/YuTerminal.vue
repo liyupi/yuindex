@@ -97,7 +97,6 @@ import { useTerminalConfigStore } from "../../core/commands/terminal/config/term
 import useHint from "./hint";
 import UserType = User.UserType;
 import { LOCAL_USER } from "../../core/commands/user/userConstant";
-
 interface YuTerminalProps {
   height?: string | number;
   fullScreen?: boolean;
@@ -105,15 +104,12 @@ interface YuTerminalProps {
   // eslint-disable-next-line vue/require-default-prop
   onSubmitCommand?: (inputText: string) => void;
 }
-
 const props = withDefaults(defineProps<YuTerminalProps>(), {
   height: "400px",
   fullScreen: false,
   user: LOCAL_USER as any,
 });
-
 const { user } = toRefs(props);
-
 const terminalRef = ref();
 const activeKeys = ref<number[]>([]);
 // 输出列表
@@ -121,9 +117,7 @@ const outputList = ref<OutputType[]>([]);
 // 命令列表
 const commandList = ref<CommandOutputType[]>([]);
 const commandInputRef = ref();
-
 const configStore = useTerminalConfigStore();
-
 /**
  * 初始命令
  */
@@ -131,28 +125,23 @@ const initCommand: CommandInputType = {
   text: "",
   placeholder: "",
 };
-
 /**
  * 待输入的命令
  */
 const inputCommand = ref<CommandInputType>({
   ...initCommand,
 });
-
 /**
  * 全局记录当前命令，便于写入结果
  */
 let currentNewCommand: CommandOutputType;
-
 const {
   commandHistoryPos,
   showPrevCommand,
   showNextCommand,
   listCommandHistory,
 } = useHistory(commandList.value, inputCommand);
-
 const { hint, setHint, debounceSetHint } = useHint();
-
 /**
  * 提交命令（回车）
  */
@@ -193,19 +182,16 @@ const doSubmitCommand = async () => {
     terminalRef.value.scrollTop = terminalRef.value.scrollHeight;
   }, 50);
 };
-
 // 输入框内容改变时，触发输入提示
 watchEffect(() => {
   debounceSetHint(inputCommand.value.text);
 });
-
 /**
  * 输入提示符
  */
 const prompt = computed(() => {
   return `[${user.value.username}]$`;
 });
-
 /**
  * 终端主样式
  */
@@ -223,7 +209,6 @@ const mainStyle = computed(() => {
         height: props.height,
       };
 });
-
 /**
  * 终端包装类主样式
  */
@@ -239,14 +224,12 @@ const wrapperStyle = computed(() => {
   }
   return style;
 });
-
 /**
  * 清空所有输出
  */
 const clear = () => {
   outputList.value = [];
 };
-
 /**
  * 写命令文本结果
  * @param text
@@ -260,7 +243,6 @@ const writeTextResult = (text: string, status?: OutputStatusType) => {
   };
   currentNewCommand.resultList.push(newOutput);
 };
-
 /**
  * 写文本错误状态结果
  * @param text
@@ -268,7 +250,6 @@ const writeTextResult = (text: string, status?: OutputStatusType) => {
 const writeTextErrorResult = (text: string) => {
   writeTextResult(text, "error");
 };
-
 /**
  * 写文本成功状态结果
  * @param text
@@ -276,7 +257,6 @@ const writeTextErrorResult = (text: string) => {
 const writeTextSuccessResult = (text: string) => {
   writeTextResult(text, "success");
 };
-
 /**
  * 写结果
  * @param output
@@ -284,7 +264,6 @@ const writeTextSuccessResult = (text: string) => {
 const writeResult = (output: OutputType) => {
   currentNewCommand.resultList.push(output);
 };
-
 /**
  * 立即输出文本
  * @param text
@@ -298,7 +277,6 @@ const writeTextOutput = (text: string, status?: OutputStatusType) => {
   };
   outputList.value.push(newOutput);
 };
-
 /**
  * 设置命令是否可折叠
  * @param collapsible
@@ -306,7 +284,6 @@ const writeTextOutput = (text: string, status?: OutputStatusType) => {
 const setCommandCollapsible = (collapsible: boolean) => {
   currentNewCommand.collapsible = collapsible;
 };
-
 /**
  * 立即输出
  * @param newOutput
@@ -314,14 +291,12 @@ const setCommandCollapsible = (collapsible: boolean) => {
 const writeOutput = (newOutput: OutputType) => {
   outputList.value.push(newOutput);
 };
-
 /**
  * 输入框聚焦
  */
 const focusInput = () => {
   commandInputRef.value.focus();
 };
-
 /**
  * 折叠 / 展开所有块
  */
@@ -336,7 +311,6 @@ const toggleAllCollapse = () => {
     activeKeys.value = [];
   }
 };
-
 /**
  * 操作终端的对象
  */
@@ -356,7 +330,6 @@ const terminal: TerminalType = {
   toggleAllCollapse,
   setCommandCollapsible,
 };
-
 onMounted(() => {
   registerShortcuts(terminal);
   terminal.writeTextOutput(
@@ -388,21 +361,17 @@ defineExpose({
 .yu-terminal-wrapper {
   background: black;
 }
-
 .yu-terminal {
   background: rgba(0, 0, 0, 0.6);
   padding: 20px;
   overflow: scroll;
 }
-
 .yu-terminal::-webkit-scrollbar {
   display: none;
 }
-
 .yu-terminal span {
   font-size: 16px;
 }
-
 .yu-terminal
   :deep(.ant-collapse-icon-position-right
     > .ant-collapse-item
@@ -410,40 +379,32 @@ defineExpose({
   color: white;
   padding: 0;
 }
-
 .yu-terminal :deep(.ant-collapse) {
   background: none;
 }
-
 .yu-terminal :deep(.ant-collapse-borderless > .ant-collapse-item) {
   border: none;
 }
-
 .yu-terminal :deep(.ant-collapse-content > .ant-collapse-content-box) {
   padding: 0;
 }
-
 .command-input {
   caret-color: white;
 }
-
 .command-input :deep(input) {
   color: white !important;
   font-size: 16px;
   padding: 0 10px;
 }
-
 .command-input :deep(.ant-input-group-addon) {
   background: none;
   border: none;
   padding: 0;
 }
-
 .command-input-prompt {
   color: white;
   background: transparent;
 }
-
 .terminal-row {
   color: white;
   font-size: 16px;
