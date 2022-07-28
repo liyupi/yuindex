@@ -11,6 +11,8 @@ export const useTerminalConfigStore = defineStore("terminalConfig", {
     background: "black",
     // 输入提示
     showHint: true,
+    // 终端欢迎语
+    welcomeTexts: [] as string[],
   }),
   getters: {},
   // 持久化
@@ -49,6 +51,13 @@ export const useTerminalConfigStore = defineStore("terminalConfig", {
         this.showHint = false;
       }
       return this.showHint;
+    },
+    /**
+     * 修改终端提示语
+     * @param welcomeTexts
+     */
+    setWelcomeTexts(welcomeTexts: string[]) {
+      this.welcomeTexts = welcomeTexts;
     },
     reset() {
       this.$reset();

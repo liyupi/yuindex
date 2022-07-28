@@ -24,6 +24,10 @@ const routes = [
     handler: require("./controller/musicController").getSingleMusicApi,
   },
   {
+    path: "/music/list/hot",
+    handler: require("./controller/musicController").getPlaylistDetailApi,
+  },
+  {
     path: "/fanyi/translate",
     handler: require("./controller/fanyiController").translateApi,
   },

@@ -1,4 +1,4 @@
-const { getSingleMusic } = require("../service/musicService");
+const { getSingleMusic, getPlaylistDetail } = require("../service/musicService");
 const MyError = require("../exception");
 const {
   REQUEST_PARAMS_ERROR_CODE,
@@ -26,6 +26,21 @@ async function getSingleMusicApi(event, req, res) {
   };
 }
 
+/**
+ * 获取歌单详情
+ * @param event
+ * @param req
+ * @param res
+ */
+async function getPlaylistDetailApi(event, req, res) {
+  const songs = await getPlaylistDetail();
+  if (!songs) {
+    throw new MyError(NOT_FOUND_ERROR_CODE);
+  }
+  return songs;
+}
+
 module.exports = {
   getSingleMusicApi,
+  getPlaylistDetailApi,
 };

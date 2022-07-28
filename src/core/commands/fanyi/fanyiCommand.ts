@@ -38,7 +38,7 @@ const fanyiCommand: CommandType = {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
-    const keywords = _[0];
+    const keywords = _.join(" ");
     const res: any = await translate(keywords, {
       from,
       to,

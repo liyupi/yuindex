@@ -1,4 +1,4 @@
-const { cloudsearch } = require("NeteaseCloudMusicApi");
+const { cloudsearch, playlist_detail } = require("NeteaseCloudMusicApi");
 
 /**
  * 搜索音乐
@@ -27,6 +27,20 @@ async function searchMusics(keywords, limit = 10) {
   }
 }
 
+/**
+ * 获取歌曲详情
+ * @returns {Promise<ITrackElement>}
+ */
+async function playlistDetail() {
+  // 热歌榜 id
+  const HOT_SONGS_PLAY_LIST_ID = 3778678;
+  const result = await playlist_detail({
+    id: HOT_SONGS_PLAY_LIST_ID,
+  });
+  return result.body.playlist.tracks;
+}
+
 module.exports = {
   searchMusics,
+  playlistDetail,
 };

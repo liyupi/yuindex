@@ -1,4 +1,7 @@
-const { searchMusics } = require("../thirdpart/neteaseMusicApi");
+const {
+  searchMusics,
+  playlistDetail,
+} = require("../thirdpart/neteaseMusicApi");
 
 /**
  * 获取单首音乐
@@ -12,6 +15,15 @@ async function getSingleMusic(keywords) {
   return songs[0];
 }
 
+/**
+ * 获取歌单详情
+ * @returns {Promise<ITrackElement>}
+ */
+async function getPlaylistDetail() {
+  return await playlistDetail();
+}
+
 module.exports = {
   getSingleMusic,
+  getPlaylistDetail,
 };

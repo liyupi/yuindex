@@ -118,6 +118,7 @@ const outputList = ref<OutputType[]>([]);
 const commandList = ref<CommandOutputType[]>([]);
 const commandInputRef = ref();
 
+// 引入终端配置状态
 const configStore = useTerminalConfigStore();
 
 /**
@@ -353,17 +354,27 @@ const terminal: TerminalType = {
   setCommandCollapsible,
 };
 
+/**
+ * 只执行一次
+ */
 onMounted(() => {
   registerShortcuts(terminal);
-  terminal.writeTextOutput(
-    `Welcome to YuIndex, coolest browser index for geeks!` +
-      `<a href="//github.com/liyupi/yuindex" target='_blank'> GitHub Open Source</a>`
-  );
-  terminal.writeTextOutput(
-    `Author <a href="//docs.qq.com/doc/DUFFRVWladXVjeUxW" target="_blank">coder_yupi</a>` +
-      `: please input 'help' to enjoy`
-  );
-  terminal.writeTextOutput("<br/>");
+  const { welcomeTexts } = configStore;
+  if (welcomeTexts?.length > 0) {
+    welcomeTexts.forEach((welcomeText) => {
+      terminal.writeTextOutput(welcomeText);
+    });
+  } else {
+    terminal.writeTextOutput(
+      `Welcome to YuIndex, coolest browser index for geeks!` +
+        `<a href="//github.com/liyupi/yuindex" target='_blank'> GitHub Open Source</a>`
+    );
+    terminal.writeTextOutput(
+      `Author <a href="//docs.qq.com/doc/DUFFRVWladXVjeUxW" target="_blank">coder_yupi</a>` +
+        `: please input 'help' to enjoy`
+    );
+    terminal.writeTextOutput("<br/>");
+  }
 });
 
 defineExpose({
