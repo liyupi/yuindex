@@ -376,11 +376,12 @@ const terminal: TerminalType = {
 onMounted(() => {
   registerShortcuts(terminal);
   terminal.writeTextOutput(
-    `Welcome to YuIndex, coolest browser index for geeks!` +
-      `<a href="//github.com/liyupi/yuindex" target='_blank'> GitHub Open Source</a>`
+    `Welcome to YuIndex-PLUS, coolest browser index for geeks!` +
+      `<a href="//github.com/tonywdy/yuindex-plus" target='_blank'> GitHub Open Source</a>`
   );
   terminal.writeTextOutput(
     `Author <a href="//docs.qq.com/doc/DUFFRVWladXVjeUxW" target="_blank">coder_yupi</a>` +
+    `PLUS Author <a href="//kwblog.vercel.app" target="_blank">kingwdy</a>` +
       `: please input 'help' to enjoy`
   );
   terminal.writeTextOutput("<br/>");

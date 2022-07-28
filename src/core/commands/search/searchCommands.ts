@@ -43,7 +43,7 @@ const fromDict: Record<string, CommandType> = {
 const searchCommand: CommandType = {
   func: "search",
   name: "网页搜索",
-  alias: ["s", "sousuo", "sou", "query"],
+  alias: ["s", "sousuo", "sou", "query","sch"],
   desc: "支持从不同平台快捷搜索内容",
   params: [
     {

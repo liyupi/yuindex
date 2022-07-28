@@ -1,12 +1,14 @@
-# YuIndex - 极客范儿的浏览器主页
+# YuIndex-plus
+# - 极客范儿的浏览器主页
 
 > Coolest browser index for geeks! 
 > 
 > 前后端全栈项目 By [程序员鱼皮](https://docs.qq.com/doc/DUFFRVWladXVjeUxW)
+> PLUS by:kingwdy
 
+所以更新的功能都在[更新日志](https://github.com/tonywdy/yuindex-PLUS/discussions/3)
 
-
-在线体验：[https://yuindex.com](https://yuindex.com)
+在线体验：[https://yuindex-plus.vercel.app](https://yuindex-plus.vercel.app)
 
 视频演示：[https://www.bilibili.com/video/BV19B4y1Y7m8/](https://www.bilibili.com/video/BV19B4y1Y7m8/)
 
@@ -16,7 +18,7 @@
 
 
 
-## YuIndex 是什么？
+## YuIndex-plus 是什么？
 
 一个很特别的浏览器主页，支持使用输入命令的方式来操作，目标是帮你在一个 web 终端中高效完成所有的事情！（all in one）
 
@@ -36,7 +38,7 @@
 
 ### 1 分钟上手使用
 
-请打开网站：https://yuindex.com
+请打开网站：https://yuindex-plus.vercel.app
 
 然后在网站内依次输入以下命令：
 
@@ -123,6 +125,8 @@ history
 - 听音乐 music
 - 摸鱼小游戏 moyu
 - 坤坤 ikun
+- [new]更新天气查询命令 noweather
+- [new]添加每日60秒读懂世界 ddsj
 - 其他。。。
 
 
@@ -172,6 +176,7 @@ history
 
 - 百度翻译 API
 - 新浪壁纸 API
+- 韩小韩 API
 
 [点击了解后端详情](server/README.md)
 
@@ -304,9 +309,15 @@ history
 4. 在 commandRegister 的 commandList 中补充新命令
 5. 测试验证通过后，可以发起 PR 等鱼皮合并
 
+> 如果需要命令可折叠（非子命令）可以在ts配置文件内添加```collapsible: true,```😃
+
 
 
 ## 致谢
 
-摸鱼命令的实现依赖于 https://haiyong.site/moyu ，感谢大佬的开源分享。
+> 摸鱼命令的实现依赖于 https://haiyong.site/moyu ，感谢大佬的开源分享。
+
+> 读懂世界的实现依赖于 https://api.vvhan.com/60s.html, 感谢韩小韩的api。
+
+> 今日天气的实现依赖于[全球天气网](https://www.tianqi.com),感谢全球天气网提供天气插件。
 

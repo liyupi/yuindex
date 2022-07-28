@@ -11,6 +11,7 @@ const todoCommand: CommandType = {
   func: "todo",
   name: "待办事项",
   desc: "记录和管理任务",
+  alias: ["td"],
   params: [
     {
       key: "subCommand",
