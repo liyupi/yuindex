@@ -8,6 +8,8 @@
 
 在线体验：[https://yuindex.com](https://yuindex.com)
 
+视频演示：[https://www.bilibili.com/video/BV19B4y1Y7m8/](https://www.bilibili.com/video/BV19B4y1Y7m8/)
+
 ![YuIndex 定制你的最强主页](./doc/assets/docpic1.png)
 
 ![YuIndex 用命令来控制网页](./doc/assets/docpic2.png)
