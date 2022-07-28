@@ -23,8 +23,11 @@ const useHint = () => {
     }
     const args = trim(inputText).split(" ");
     const func = args[0];
-    const likeKey = Object.keys(commandMap).filter(key => key.indexOf(func) === 0)[0];
-    let command =  commandMap[likeKey];
+    // 前缀匹配
+    const likeKey = Object.keys(commandMap).filter((key) =>
+      key.startsWith(func)
+    )[0];
+    let command = commandMap[likeKey];
     if (!command) {
       hint.value = "";
       return;
