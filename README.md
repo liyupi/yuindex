@@ -308,6 +308,8 @@ history
 4. 在 commandRegister 的 commandList 中补充新命令
 5. 测试验证通过后，可以发起 PR 等鱼皮合并
 
+> 如果需要命令可折叠（非子命令）可以在ts配置文件内添加```collapsible: true,```😃
+
 
 
 ## 致谢
