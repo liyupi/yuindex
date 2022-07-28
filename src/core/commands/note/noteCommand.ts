@@ -10,6 +10,7 @@ const ddosCommand: CommandType = {
   func: "note",
   name: "在线写note",
   desc: "在线写note",
+  collapsible: true,
   options: [],
   action(options, terminal) {
     const output: ComponentOutputType = {
