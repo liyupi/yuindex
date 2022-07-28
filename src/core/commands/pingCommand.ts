@@ -1,5 +1,5 @@
 import { CommandType } from "../command";
-import axios from "axios";
+//import axios from "axios";
 
 /**
  * ping 命令
@@ -23,15 +23,25 @@ const pingCommand: CommandType = {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
-    const dest = _[0];
-    const res = await axios.get(dest).catch((e) => {
-      return e.response;
-    });
-    if (res?.status < 300) {
-      terminal.writeTextSuccessResult("目标地址正常");
-    } else {
-      terminal.writeTextErrorResult("ping 不通！");
+    var dest = _[0];
+    if (
+      dest.substr(0, 7).toLowerCase() != "http://" &&
+      dest.substr(0, 8).toLowerCase() != "https://"
+    ) {
+      dest = "http://" + dest;
     }
+    const res = await fetch(dest, { mode: "no-cors" })
+      .then((resp) => {
+        if (resp.ok || resp.status == 200 || resp.type == "opaque") {
+          terminal.writeTextSuccessResult("目标地址正常");
+        } else {
+          terminal.writeTextErrorResult("ping 不通！");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        terminal.writeTextErrorResult("ping 不通！");
+      });
   },
 };
 
