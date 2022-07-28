@@ -20,6 +20,7 @@ import ddosCommand from "./commands/ddos/ddosCommand";
 import noweatherCommand from "./commands/noweather/noweatherCommand";
 import ddsjCommand from "./commands/ddsj/ddsjCommand";
 import ipCommand from "./commands/ip/ipCommand";
+import drawCommand from "./commands/draw/drawCommand";
 import moyuCommand from "./commands/relax/moyu/moyuCommand";
 import shortcutCommand from "./commands/terminal/shortcut/shortcutCommand";
 import ikunCommand from "./commands/relax/ikun/ikunCommand";
@@ -47,6 +48,7 @@ const commandList: CommandType[] = [
   noweatherCommand,
   ddsjCommand,
   ipCommand,
+  drawCommand,
   moyuCommand,
   ikunCommand,
   backgroundCommand,
