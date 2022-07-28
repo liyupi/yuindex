@@ -21,6 +21,7 @@ import noweatherCommand from "./commands/noweather/noweatherCommand";
 import ddsjCommand from "./commands/ddsj/ddsjCommand";
 import ipCommand from "./commands/ip/ipCommand";
 import drawCommand from "./commands/draw/drawCommand";
+import noteCommand from "./commands/note/noteCommand";
 import moyuCommand from "./commands/relax/moyu/moyuCommand";
 import shortcutCommand from "./commands/terminal/shortcut/shortcutCommand";
 import ikunCommand from "./commands/relax/ikun/ikunCommand";
@@ -49,6 +50,7 @@ const commandList: CommandType[] = [
   ddsjCommand,
   ipCommand,
   drawCommand,
+  noteCommand,
   moyuCommand,
   ikunCommand,
   backgroundCommand,
