@@ -13,7 +13,7 @@ const musicCommand: CommandType = {
   params: [
     {
       key: "name",
-      desc: "音乐名称",
+      desc: "音乐名称(空格用_表示",
       required: true,
     },
   ],
