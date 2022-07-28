@@ -6,8 +6,9 @@
 > 前后端全栈项目 By [程序员鱼皮](https://docs.qq.com/doc/DUFFRVWladXVjeUxW)
 > PLUS by:kingwdy
 
+所以更新的功能都在[更新日志](https://github.com/tonywdy/yuindex-PLUS/discussions/3)
 
-在线体验：[https://yuindex.com](https://yuindex.com)
+在线体验：[https://yuindex-plus.vercel.app](https://yuindex-plus.vercel.app)
 
 视频演示：[https://www.bilibili.com/video/BV19B4y1Y7m8/](https://www.bilibili.com/video/BV19B4y1Y7m8/)
 
