@@ -26,8 +26,8 @@ const codenavCommand: CommandType = {
   ],
   action(options, terminal) {
     const { _, self } = options;
-    const word = _.length > 0 ? _[0] : "";
-    const targetLink = `https://www.code-nav.cn/resources?q=${word}`;
+    const word = _.length > 0 ? _.join(' ') : '';
+    const targetLink = `https://www.code-nav.cn/resources?q=${word?.trim()}`;
     if (self) {
       window.location.href = targetLink;
     } else {
