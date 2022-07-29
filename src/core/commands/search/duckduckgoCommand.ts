@@ -26,8 +26,8 @@ const duckduckgoCommand: CommandType = {
   ],
   action(options, terminal) {
     const { _, self } = options;
-    const word = _.length > 0 ? _[0] : "";
-    const targetLink = `https://duckduckgo.com/?q=${word}`;
+    const word = _.length > 0 ? _.join(' ') : '';
+    const targetLink = `https://duckduckgo.com/?q=${word?.trim()}`;
     if (self) {
       window.location.href = targetLink;
     } else {
