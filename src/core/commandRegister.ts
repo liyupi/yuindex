@@ -23,6 +23,8 @@ import ikunCommand from "./commands/relax/ikun/ikunCommand";
 import welcomeCommand from "./commands/terminal/config/welcomeCommand";
 import hotCommand from "./commands/hot/hotCommand";
 import ikuntestCommand from "./commands/relax/ikuntest/ikuntestCommand";
+import foregroundCommand from "./commands/terminal/config/foregroundCommand";
+import baidubaikeCommand from "./commands/search/baidubaikeCommand";
 
 /**
  * 命令列表（数组元素顺序会影响 help 命令的展示顺序）
@@ -50,8 +52,10 @@ const commandList: CommandType[] = [
   ikuntestCommand,
   welcomeCommand,
   backgroundCommand,
+  foregroundCommand,
   resetCommand,
   hintCommand,
+  baidubaikeCommand
 ];
 
 /**
