@@ -87,5 +87,9 @@ declare namespace YuTerminal {
     toggleAllCollapse: () => void;
     // 设置命令是否可折叠
     setCommandCollapsible: (collapsible: boolean) => void;
+	// 关闭页面
+	shutdown: () => void;
+	// 刷新页面
+	reboot: () => void;
   }
 }

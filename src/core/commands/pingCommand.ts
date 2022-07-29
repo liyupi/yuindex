@@ -20,7 +20,7 @@ const pingCommand: CommandType = {
   async action(options, terminal) {
     const { _ } = options;
     if (_.length < 1) {
-      terminal.writeTextErrorResult("参数不足");
+      terminal.writeTextSuccessResult("pong");
       return;
     }
     var dest = _[0];

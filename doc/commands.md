@@ -506,6 +506,22 @@
 
 
 
+#### shutdown 关闭页面
+
+别名： exit
+
+用法： shutdown
+
+
+
+#### reboot 刷新页面
+
+别名： restart
+
+用法： reboot
+
+
+
 ### 终端配置
 
 #### background 切换终端背景
