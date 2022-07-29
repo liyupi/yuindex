@@ -9,6 +9,8 @@ export const useTerminalConfigStore = defineStore("terminalConfig", {
   state: () => ({
     // 背景
     background: "black",
+    // 普通文本颜色
+    fontColor: "white",
     // 输入提示
     showHint: true,
   }),
@@ -30,6 +32,11 @@ export const useTerminalConfigStore = defineStore("terminalConfig", {
         return;
       }
       this.background = url;
+    },
+    setFontColor(color: string) {
+      // 判断颜色是否在颜色表内
+
+      this.fontColor = color;
     },
     /**
      * 设置或反转提示
