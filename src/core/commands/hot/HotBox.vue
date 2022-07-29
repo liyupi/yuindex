@@ -1,13 +1,10 @@
 <template>
   <div>
     <div v-for="(song, index) in songList" :key="index">
-      <a
-        :href="`https://music.163.com/#/song?id=${song.id}`"
-        target="_blank"
-      >
-        {{ song.al.name }}
+      <a :href="`https://music.163.com/#/song?id=${song?.id}`" target="_blank">
+        {{ song?.al?.name }}
       </a>
-      <img :src="song.al.picUrl" height="25" />
+      <img :src="song?.al?.picUrl" height="25" :alt="song?.al?.name" />
     </div>
   </div>
 </template>
@@ -15,8 +12,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { listHotMusics } from "./hotApi";
+import { message } from "ant-design-vue";
 
-const songList = ref([]);
+const songList = ref([] as any[]);
 
 onMounted(async () => {
   const res: any = await listHotMusics();
@@ -24,7 +22,7 @@ onMounted(async () => {
     const songs = res.data;
     songList.value = songs.slice(0, 10);
   } else {
-    terminal.writeTextErrorResult(res?.message ?? "获取热榜失败");
+    message.error("加载失败");
   }
 });
 </script>
