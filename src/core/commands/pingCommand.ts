@@ -16,23 +16,38 @@ const pingCommand: CommandType = {
       required: true,
     },
   ],
-  options: [],
+  options: [
+    {
+      key: "timeout",
+      desc: "请求超时时间(单位:毫秒)",
+      alias: ["t"],
+      type: "string",
+      defaultValue: "1500",
+    },
+  ],
   async action(options, terminal) {
     const { _ } = options;
+    const { timeout = "1500" } = options;
     if (_.length < 1) {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
     var dest = _[0];
     if (
-      dest.substr(0, 7).toLowerCase() != "http://" &&
-      dest.substr(0, 8).toLowerCase() != "https://"
+      !dest.toLowerCase().startsWith("http://") &&
+      !dest.toLowerCase().startsWith("https://")
     ) {
       dest = "http://" + dest;
     }
-    const res = await fetch(dest, { mode: "no-cors" })
-      .then((resp) => {
+    const res = await Promise.race([
+      new Promise(function (resolve, reject) {
+        setTimeout(() => reject(new Error("timeout")), Number(timeout));
+      }),
+      fetch(dest, { mode: "no-cors" }),
+    ])
+      .then((resp: any) => {
         if (resp.ok || resp.status == 200 || resp.type == "opaque") {
+          console.log(resp);
           terminal.writeTextSuccessResult("目标地址正常");
         } else {
           terminal.writeTextErrorResult("ping 不通！");
