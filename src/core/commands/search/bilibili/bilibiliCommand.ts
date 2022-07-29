@@ -34,6 +34,7 @@ const bilibiliCommand: CommandType = {
       type: "string",
     },
   ],
+  collapsible: true,
   action(options, terminal) {
     const { _, self, bvid } = options;
     // 优先打开视频
