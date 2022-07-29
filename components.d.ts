@@ -12,6 +12,8 @@ declare module '@vue/runtime-core' {
     ACollapsePanel: typeof import('ant-design-vue/es')['CollapsePanel']
     AInput: typeof import('ant-design-vue/es')['Input']
     ARow: typeof import('ant-design-vue/es')['Row']
+    ASpin: typeof import('ant-design-vue/es')['Spin']
+    ATable: typeof import('ant-design-vue/es')['Table']
     ATag: typeof import('ant-design-vue/es')['Tag']
     ContentOutput: typeof import('./src/components/yu-terminal/ContentOutput.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
