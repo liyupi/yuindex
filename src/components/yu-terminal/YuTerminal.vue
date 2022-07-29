@@ -78,6 +78,9 @@
       <div v-if="hint&&!runningState().isRunning" class="terminal-row" style="color: #bbb">
         hint：{{ hint }}
       </div>
+      <div v-if="runningState().isRunning" class="terminal-spin" style="color: #bbb">
+        <a-spin />执行中，请稍后
+      </div>
       <div style="margin-bottom: 16px" />
     </div>
   </div>
