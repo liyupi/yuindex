@@ -97,7 +97,7 @@ import { useTerminalConfigStore } from "../../core/commands/terminal/config/term
 import useHint from "./hint";
 import UserType = User.UserType;
 import { LOCAL_USER } from "../../core/commands/user/userConstant";
-
+import {registerAlias} from "../../core/commands/alias/aliasCommand";
 interface YuTerminalProps {
   height?: string | number;
   fullScreen?: boolean;
@@ -395,6 +395,9 @@ onMounted(() => {
     );
     terminal.writeTextOutput("<br/>");
   }
+
+  // 注册别名
+  registerAlias()
 });
 
 /**
