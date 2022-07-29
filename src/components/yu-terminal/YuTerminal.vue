@@ -332,6 +332,8 @@ const isInputFocused = () => {
  * 设置输入框的值
  */
 const setTabCompletion = () => {
+  // 手动触发一次hint，确保补全内容是最新的
+  setHint(inputCommand.value.text)
   if(hint.value){
     inputCommand.value.text =`${hint.value.split(' ')[0]}${hint.value.split(' ').length > 1 ? ' ' : ''}`
   }
