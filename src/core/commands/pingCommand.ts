@@ -47,7 +47,7 @@ const pingCommand: CommandType = {
       new Promise(function (resolve, reject) {
         setTimeout(() => reject(new Error("timeout")), Number(timeout));
       }),
-      fetch(dest, { mode: "no-cors" }),
+      fetch(dest, { mode: "no-cors", cache: "reload" }),
     ])
       .then((resp: any) => {
         if (resp.ok || resp.status == 200 || resp.type == "opaque") {
