@@ -22,12 +22,12 @@ const pingCommand: CommandType = {
       desc: "请求超时时间(单位:毫秒)",
       alias: ["t"],
       type: "string",
-      defaultValue: "1500",
+      defaultValue: "3000",
     },
   ],
   async action(options, terminal) {
     const { _ } = options;
-    const { timeout = "1500" } = options;
+    const { timeout = "3000" } = options;
     if (_.length < 1) {
       terminal.writeTextErrorResult("参数不足");
       return;
@@ -39,6 +39,7 @@ const pingCommand: CommandType = {
     ) {
       dest = "http://" + dest;
     }
+    const startTime = new Date().getTime();
     const res = await Promise.race([
       new Promise(function (resolve, reject) {
         setTimeout(() => reject(new Error("timeout")), Number(timeout));
@@ -48,7 +49,11 @@ const pingCommand: CommandType = {
       .then((resp: any) => {
         if (resp.ok || resp.status == 200 || resp.type == "opaque") {
           console.log(resp);
+          const finishTime = new Date().getTime();
           terminal.writeTextSuccessResult("目标地址正常");
+          terminal.writeTextResult(
+            `延迟=${(finishTime - startTime).toString()}ms`
+          );
         } else {
           terminal.writeTextErrorResult("ping 不通！");
         }
