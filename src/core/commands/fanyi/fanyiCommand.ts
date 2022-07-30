@@ -34,19 +34,26 @@ const fanyiCommand: CommandType = {
   ],
   async action(options, terminal) {
     const { _, from, to } = options;
-    if (_.length < 1) {
+    const validArgs = _.filter((i) => Boolean(i));
+    if (validArgs.length < 1) {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
-    const keywords = _[0];
+    const keywords = validArgs[0];
     const res: any = await translate(keywords, {
       from,
       to,
     });
     if (res?.code === 0) {
-      terminal.writeTextSuccessResult(
-        `翻译结果：${res.data.trans_result[0].dst}`
-      );
+      if (res.data.error_code) {
+        terminal.writeTextErrorResult(
+          `翻译失败，错误信息：${res.data.error_msg}`
+        );
+      } else {
+        terminal.writeTextSuccessResult(
+          `翻译结果：${res.data.trans_result[0].dst}`
+        );
+      }
     } else {
       terminal.writeTextErrorResult(res?.message ?? "翻译失败");
     }

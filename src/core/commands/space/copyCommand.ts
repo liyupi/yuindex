@@ -31,12 +31,13 @@ const copyCommand: CommandType = {
   ],
   action(options, terminal): void {
     const { _, recursive = false } = options;
-    if (_.length < 2) {
+    const validArgs = _.filter((i) => Boolean(i));
+    if (validArgs.length < 2) {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
     const spaceStore = useSpaceStore();
-    const [source, target] = _;
+    const [source, target] = validArgs;
     const result = spaceStore.copyItem(source, target, recursive);
     if (result) {
       terminal.writeTextResult("复制成功");

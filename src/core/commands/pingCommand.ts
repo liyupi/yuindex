@@ -19,11 +19,12 @@ const pingCommand: CommandType = {
   options: [],
   async action(options, terminal) {
     const { _ } = options;
-    if (_.length < 1) {
+    const validArgs = _.filter((i) => Boolean(i));
+    if (validArgs.length < 1) {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
-    var dest = _[0];
+    var dest = validArgs[0];
     if (
       dest.substr(0, 7).toLowerCase() != "http://" &&
       dest.substr(0, 8).toLowerCase() != "https://"

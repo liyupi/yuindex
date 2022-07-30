@@ -24,6 +24,10 @@ const timingCommand: CommandType = {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
+    if (isNaN(Number(seconds))) {
+      terminal.writeTextErrorResult("参数错误");
+      return;
+    }
     const output: ComponentOutputType = {
       type: "component",
       component: defineAsyncComponent(() => import("./TimingBox.vue")),

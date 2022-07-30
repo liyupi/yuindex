@@ -18,12 +18,13 @@ const mkdirCommand: CommandType = {
   options: [],
   action(options, terminal): void {
     const { _ } = options;
-    if (_.length < 1) {
+    const validArgs = _.filter((i) => Boolean(i));
+    if (validArgs.length < 1) {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
     const spaceStore = useSpaceStore();
-    const newDir = _[0];
+    const newDir = validArgs[0];
     const item: SpaceItemType = {
       dir: spaceStore.currentDir,
       name: newDir,

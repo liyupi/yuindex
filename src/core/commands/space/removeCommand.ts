@@ -34,11 +34,12 @@ const removeCommand: CommandType = {
   ],
   action(options: ParsedOptions, terminal): void {
     const { _, recursive = false, force } = options;
-    if (_.length < 1) {
+    const validArgs = _.filter((i) => Boolean(i));
+    if (validArgs.length < 1) {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
-    const deleteKey = _[0];
+    const deleteKey = validArgs[0];
     if (recursive && !force) {
       terminal.writeTextErrorResult("请确认要强制删除");
       return;

@@ -27,11 +27,12 @@ export default {
   ],
   action(options, terminal): void {
     const { _, self } = options;
-    if (_.length < 1) {
+    const validArgs = _.filter((i) => Boolean(i));
+    if (validArgs.length < 1) {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
-    let link = _[0];
+    let link = validArgs[0];
     // 优先找空间条目链接
     let { getItem } = useSpaceStore();
     const item = getItem(link);

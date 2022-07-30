@@ -21,11 +21,12 @@ const musicCommand: CommandType = {
   collapsible: true,
   action(options, terminal) {
     const { _ } = options;
-    if (_.length < 1) {
+    const validArgs = _.filter((i) => Boolean(i));
+    if (validArgs.length < 1) {
       terminal.writeTextErrorResult("参数不足");
       return;
     }
-    const name = _[0];
+    const name = validArgs[0];
     const output: ComponentOutputType = {
       type: "component",
       component: defineAsyncComponent(() => import("./MusicBox.vue")),
