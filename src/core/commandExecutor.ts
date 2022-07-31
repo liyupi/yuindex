@@ -41,14 +41,21 @@ export const doCommandExecute = async (
   // 执行命令
   await doAction(command, parsedOptions, terminal, parentCommand);
 };
-
+/**
+ * 命令转小写
+ * @param text
+ * @return text.toLocaleLowerCase()
+ */
+export const toLocaleLowerCase = (text: string): string => {
+  return text.toLocaleLowerCase();
+};
 /**
  * 获取命令（匹配）
  * @param text
  * @param parentCommand
  */
 const getCommand = (text: string, parentCommand?: CommandType): CommandType => {
-  const func = text.split(" ", 1)[0];
+  const func = toLocaleLowerCase(text.split(" ", 1)[0]);
   let commands = commandMap;
   // 有父命令，则从父命令中查找
   if (

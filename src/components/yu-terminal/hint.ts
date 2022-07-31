@@ -3,7 +3,7 @@ import { getUsageStr } from "../../core/commands/terminal/help/helpUtils";
 import { commandMap } from "../../core/commandRegister";
 import _, { trim } from "lodash";
 import { useTerminalConfigStore } from "../../core/commands/terminal/config/terminalConfigStore";
-
+import { toLocaleLowerCase } from "../../core/commandExecutor";
 /**
  * 命令提示功能
  * @author yupi
@@ -22,7 +22,7 @@ const useHint = () => {
       return;
     }
     const args = trim(inputText).split(" ");
-    const func = args[0];
+    const func = toLocaleLowerCase(args[0]);
     // 前缀匹配
     const likeKey = Object.keys(commandMap).filter((key) =>
       key.startsWith(func)
