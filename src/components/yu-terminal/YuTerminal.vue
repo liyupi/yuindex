@@ -242,10 +242,10 @@ const wrapperStyle = computed(() => {
   };
   if (background.startsWith("http")) {
     style.background = `url(${background})`;
-    style.backgroundSize = "cover";
   } else {
     style.background = background;
   }
+  style.backgroundSize = "cover";
   return style;
 });
 
