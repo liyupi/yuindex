@@ -79,7 +79,7 @@
         hint：{{ hint }}
       </div>
       <div v-if="runningState().isRunning" class="terminal-spin" style="color: #bbb">
-        <a-spin :indicator="indicator" />命令执行中，请稍候
+        <a-spin />命令执行中，请稍候
       </div>
       <div style="margin-bottom: 16px" />
     </div>
