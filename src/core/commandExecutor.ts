@@ -16,7 +16,7 @@ export const doCommandExecute = async (
   parentCommand?: CommandType
 ) => {
   //去除命令首尾空格
-  text = text.replace(/(^\s*)|(\s*$)/g,"");
+  text = text.trim();
   if (!text) {
     return;
   }
