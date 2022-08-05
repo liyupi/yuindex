@@ -15,6 +15,8 @@ export const doCommandExecute = async (
   terminal: TerminalType,
   parentCommand?: CommandType
 ) => {
+  //去除命令首尾空格
+  text = text.trim();
   if (!text) {
     return;
   }
