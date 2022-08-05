@@ -7,11 +7,11 @@ import { checkSearchText } from "./hooks/character/standard";
  * 变量命名命令
  * @author uiuing
  */
-const musicCommand: CommandType = {
+const varbookCommand: CommandType = {
   func: "varbook",
-  name: "varBook",
-  desc: "变量命名助手",
-  alias: ["vb"],
+  name: "varbook",
+  desc: "变量命名助手，自动帮你取变量名",
+  alias: ["vb", "bianliang"],
   params: [
     {
       key: "data",
@@ -27,7 +27,7 @@ const musicCommand: CommandType = {
     if (!searchText) return;
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./VariableBox.vue")),
+      component: defineAsyncComponent(() => import("./VarbookBox.vue")),
       props: {
         searchText,
       },
@@ -36,4 +36,4 @@ const musicCommand: CommandType = {
   },
 };
 
-export default musicCommand;
+export default varbookCommand;

@@ -60,9 +60,9 @@
       </a-collapse>
       <div class="terminal-row">
         <a-input
-          :disabled="runningState().isRunning"
           ref="commandInputRef"
           v-model:value="inputCommand.text"
+          :disabled="isRunning"
           class="command-input"
           :placeholder="inputCommand.placeholder"
           :bordered="false"
@@ -75,11 +75,8 @@
         </a-input>
       </div>
       <!-- 输入提示-->
-      <div v-if="hint&&!runningState().isRunning" class="terminal-row" style="color: #bbb">
+      <div v-if="hint && !isRunning" class="terminal-row" style="color: #bbb">
         hint：{{ hint }}
-      </div>
-      <div v-if="runningState().isRunning" class="terminal-spin" style="color: #bbb">
-        <a-spin />命令执行中，请稍候
       </div>
       <div style="margin-bottom: 16px" />
     </div>
@@ -87,7 +84,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, Ref, ref, StyleValue, toRefs, watchEffect } from "vue";
+import {
+  computed,
+  onMounted,
+  Ref,
+  ref,
+  StyleValue,
+  toRefs,
+  watchEffect,
+} from "vue";
 import CommandOutputType = YuTerminal.CommandOutputType;
 import OutputType = YuTerminal.OutputType;
 import CommandInputType = YuTerminal.CommandInputType;
@@ -101,7 +106,7 @@ import { useTerminalConfigStore } from "../../core/commands/terminal/config/term
 import useHint from "./hint";
 import UserType = User.UserType;
 import { LOCAL_USER } from "../../core/commands/user/userConstant";
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
 interface YuTerminalProps {
   height?: string | number;
@@ -126,6 +131,9 @@ const outputList = ref<OutputType[]>([]);
 // 命令列表
 const commandList = ref<CommandOutputType[]>([]);
 const commandInputRef = ref();
+
+// 命令是否运行
+const isRunning = ref(false);
 
 // 引入终端配置状态
 const configStore = useTerminalConfigStore();
@@ -163,7 +171,7 @@ const { hint, setHint, debounceSetHint } = useHint();
  * 提交命令（回车）
  */
 const doSubmitCommand = async () => {
-  runningState().isRunning = true;
+  isRunning.value = true;
   setHint("");
   let inputText = inputCommand.value.text;
   // 执行某条历史命令
@@ -199,7 +207,7 @@ const doSubmitCommand = async () => {
   setTimeout(() => {
     terminalRef.value.scrollTop = terminalRef.value.scrollHeight;
   }, 50);
-  runningState().isRunning = false;
+  isRunning.value = false;
 };
 
 // 输入框内容改变时，触发输入提示
@@ -333,16 +341,20 @@ const focusInput = () => {
  * 获取输入框是否聚焦
  */
 const isInputFocused = () => {
-  return (commandInputRef.value.input as HTMLInputElement) == document.activeElement
-}
+  return (
+    (commandInputRef.value.input as HTMLInputElement) == document.activeElement
+  );
+};
 /**
  * 设置输入框的值
  */
 const setTabCompletion = () => {
-  if(hint.value){
-    inputCommand.value.text =`${hint.value.split(' ')[0]}${hint.value.split(' ').length > 1 ? ' ' : ''}`
+  if (hint.value) {
+    inputCommand.value.text = `${hint.value.split(" ")[0]}${
+      hint.value.split(" ").length > 1 ? " " : ""
+    }`;
   }
-}
+};
 
 /**
  * 折叠 / 展开所有块
@@ -380,15 +392,6 @@ const terminal: TerminalType = {
   toggleAllCollapse,
   setCommandCollapsible,
 };
-
-/**
- * 运行状态
- */
-const runningState = defineStore("runningState", {
-  state: () => {
-    return { isRunning: false };
-  },
-});
 
 /**
  * 只执行一次

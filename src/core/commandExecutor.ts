@@ -50,7 +50,9 @@ export const doCommandExecute = async (
  * @param parentCommand
  */
 const getCommand = (text: string, parentCommand?: CommandType): CommandType => {
-  const func = text.split(" ", 1)[0];
+  let func = text.split(" ", 1)[0];
+  // 大小写无关
+  func = func.toLowerCase();
   let commands = commandMap;
   // 有父命令，则从父命令中查找
   if (

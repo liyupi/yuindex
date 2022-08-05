@@ -9,10 +9,10 @@
     >
       <div v-show="loadOK">
         <a-table
-          v-if="variablesTable.source"
+          v-if="variablesTable?.source"
           class="table"
-          :data-source="variablesTable.source"
-          :columns="variablesTable.columns"
+          :data-source="variablesTable?.source"
+          :columns="variablesTable?.columns"
           :size="'small'"
           :pagination="false"
         />
@@ -36,7 +36,7 @@ interface VariableBoxProps {
 const props = defineProps<VariableBoxProps>();
 
 const { searchText } = toRefs(props);
-const variablesTable = ref({});
+const variablesTable = ref<any>({});
 const loadOK = ref(false);
 const output = reactive<OutputType>({
   type: "text",
@@ -63,9 +63,11 @@ getNamedVariables(searchText.value)
 .main {
   max-width: 600px;
 }
+
 .success {
   margin: 8px 0;
 }
+
 .warning {
   margin: 0;
 }

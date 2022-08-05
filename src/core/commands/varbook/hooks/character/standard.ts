@@ -9,6 +9,10 @@ const STYLE_LANG: { [key: string]: string } = {
   note: "注释",
 };
 
+/**
+ * 解析搜索文本
+ * @param content
+ */
 const parseSearchText = (content: string): string | null | undefined => {
   return content
     ? content
@@ -19,6 +23,11 @@ const parseSearchText = (content: string): string | null | undefined => {
     : content;
 };
 
+/**
+ * 检查搜索文本
+ * @param searchText
+ * @param terminal
+ */
 export const checkSearchText = (
   searchText: string,
   terminal: TerminalType

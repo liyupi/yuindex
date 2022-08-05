@@ -49,7 +49,8 @@ const useHint = () => {
         args.push(arg);
       }
     }
-    const func = args[0];
+    // 大小写无关
+    const func = args[0].toLowerCase();
     // 前缀匹配
     const likeKey = Object.keys(commandMap).filter((key) =>
       key.startsWith(func)
