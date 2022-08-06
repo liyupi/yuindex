@@ -129,7 +129,7 @@ const activeKeys = ref<number[]>([]);
 // 输出列表
 const outputList = ref<OutputType[]>([]);
 // 命令列表
-const commandList = ref<CommandOutputType[]>([]);
+const commandList = ref<CommandOutputType[]>(JSON.parse(localStorage.getItem("commandList") || "[]"));
 const commandInputRef = ref();
 
 // 命令是否运行
@@ -199,6 +199,8 @@ const doSubmitCommand = async () => {
     commandList.value.push(newCommand);
     // 重置当前要查看的命令位置
     commandHistoryPos.value = commandList.value.length;
+    // 保存的localStorage
+    localStorage.setItem('commandList', JSON.stringify(commandList.value));
   }
   inputCommand.value = { ...initCommand };
   // 默认展开折叠面板
