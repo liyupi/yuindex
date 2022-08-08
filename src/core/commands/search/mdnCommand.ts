@@ -23,7 +23,7 @@ const mdnCommand: CommandType = {
   action(options, terminal) {
     const { _, self } = options;
     const word = _.length > 0 ? _[0] : "";
-    const targetLink = `https://developer.mozilla.org/zh-CN/search?q${word}`;
+    const targetLink = `https://developer.mozilla.org/zh-CN/search?q=${word}`;
     if (self) {
       window.location.href = targetLink;
     } else {
