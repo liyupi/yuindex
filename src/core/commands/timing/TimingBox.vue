@@ -41,7 +41,7 @@ onMounted(() => {
   if (!leftTime.value) {
     return;
   }
-  interval = setInterval(() => {
+  interval = window.setInterval(() => {
     if (start.value) {
       leftTime.value--;
     }
