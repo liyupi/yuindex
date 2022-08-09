@@ -1,4 +1,5 @@
 <template>
+  <background-noise />
   <yu-terminal
     ref="terminalRef"
     :user="loginUser"
@@ -12,6 +13,7 @@ import { doCommandExecute } from "../core/commandExecutor";
 import { onMounted, ref } from "vue";
 import { useUserStore } from "../core/commands/user/userStore";
 import { storeToRefs } from "pinia";
+import BackgroundNoise from "../core/commands/noise/BackgroundNoise.vue";
 
 const terminalRef = ref();
 

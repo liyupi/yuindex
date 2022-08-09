@@ -11,6 +11,8 @@ export const useTerminalConfigStore = defineStore("terminalConfig", {
     background: "black",
     // 输入提示
     showHint: true,
+    // 背景噪音
+    showNoise: true,
     // 终端欢迎语
     welcomeTexts: [] as string[],
   }),
@@ -51,6 +53,14 @@ export const useTerminalConfigStore = defineStore("terminalConfig", {
         this.showHint = false;
       }
       return this.showHint;
+    },
+    /**
+     * 设置是否显示背景噪音
+     * @return 修改后的噪音开启 / 关闭状态
+     */
+    toggleShowNoise(): boolean {
+      this.showNoise = !this.showNoise;
+      return this.showNoise;
     },
     /**
      * 修改终端提示语
