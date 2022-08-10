@@ -18,6 +18,8 @@ declare module '@vue/runtime-core' {
     AListItem: typeof import('ant-design-vue/es')['ListItem']
     AListItemMeta: typeof import('ant-design-vue/es')['ListItemMeta']
     ARow: typeof import('ant-design-vue/es')['Row']
+    ASpin: typeof import('ant-design-vue/es')['Spin']
+    ATable: typeof import('ant-design-vue/es')['Table']
     ATag: typeof import('ant-design-vue/es')['Tag']
     ContentOutput: typeof import('./src/components/yu-terminal/ContentOutput.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
