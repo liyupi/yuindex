@@ -25,6 +25,7 @@ import hotCommand from "./commands/hot/hotCommand";
 import ikuntestCommand from "./commands/relax/ikuntest/ikuntestCommand";
 import shutdownCommand from "./commands/shutdownCommand";
 import rebootCommand from "./commands/rebootCommand";
+import varbookCommand from "./commands/varbook/varbookCommand";
 
 /**
  * 命令列表（数组元素顺序会影响 help 命令的展示顺序）
@@ -35,6 +36,7 @@ const commandList: CommandType[] = [
   ...searchCommands,
   ...spaceCommands,
   ...userCommands,
+  varbookCommand,
   hotCommand,
   todoCommand,
   timingCommand,
