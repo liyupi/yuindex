@@ -3,6 +3,7 @@ import { getUsageStr } from "../../core/commands/terminal/help/helpUtils";
 import { commandMap } from "../../core/commandRegister";
 import _, { trim } from "lodash";
 import { useTerminalConfigStore } from "../../core/commands/terminal/config/terminalConfigStore";
+import parsedArgs from "../../utils/parsedArgs";
 
 /**
  * 命令提示功能
@@ -22,33 +23,7 @@ const useHint = () => {
       return;
     }
     const originArgs = trim(inputText).split(" ");
-    let args: string[] = []
-    // 处理空格
-    for (let index = 0; originArgs[index]; index++) {
-      const arg = originArgs[index];
-      if (arg[0] == "\"" || arg[0] == "'") {
-        let end = "";
-        const _index = index;
-        for (let i = index; originArgs[i]; i++){
-          const arg = originArgs[i];
-          if (arg[arg.length] == "\"" || arg[arg.length] == "'") {
-            end = end + (i == _index? "" : " ") + arg.slice(0, arg.length - 1);
-            break;
-          }
-          else {
-            end = end + (i == _index? "" : " ") + arg;
-          }
-          index++
-        }
-        if (end[end.length - 1] == "\"" || end[end.length - 1] == "'") {
-          end = end.substring(0, end.length - 1)
-        }
-        args.push(end.substring(1, end.length + 1));
-      }
-      else {
-        args.push(arg);
-      }
-    }
+    let args: string[] = parsedArgs(originArgs)
     // 大小写无关
     const func = args[0].toLowerCase();
     // 前缀匹配
