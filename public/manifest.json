@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "🐟 Index",
+  "version": "0.0.0",
+  "description": "极客范儿的浏览器主页",
+  "author": "liyupi <592789970@qq.com>",
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "homepage_url": "https://yuindex.com/",
+  "minimum_chrome_version": "81.0.0",
+  "offline_enabled": true,
+  "permissions": ["tabs"],
+  "short_name": "yuindex"
+}
