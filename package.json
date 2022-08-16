@@ -3,13 +3,23 @@
   "description": "极客范儿的浏览器主页",
   "private": true,
   "version": "0.0.0",
+  "main": "public/main.js",
   "scripts": {
     "dev": "vite",
     "dev:crx": "cross-env BUILD_CRX=1 vite build --watch",
     "build": "vue-tsc --noEmit && vite build",
     "build:crx": "cross-env BUILD_CRX=1 vite build",
+    "build:electron": "vite build & electron-builder",
     "preview": "vite preview",
+    "preview:electron": "electron .",
     "tsc": "vue-tsc --noEmit"
+  },
+  "build": {
+    "appId": "cloudDoc",
+    "productName": "yuindex",
+    "directories": {
+      "output": "electron-builder"
+    }
   },
   "dependencies": {
     "ant-design-vue": "^3.2.10",
@@ -48,6 +58,8 @@
     "typescript": "^4.6.4",
     "unplugin-vue-components": "^0.21.1",
     "vite": "^2.9.9",
-    "vue-tsc": "^0.38.4"
+    "vue-tsc": "^0.38.4",
+    "electron": "^20.0.2",
+    "electron-builder": "^23.3.3"
   }
 }
