@@ -14,7 +14,8 @@ import gengCommand from "./gengCommand";
 import duckduckgoCommand from "./duckduckgoCommand";
 import fsearchCommand from "./fsearchCommand";
 import sogouCommand from "./sogouCommand";
-import mdnCommand from "./mdnCommand"
+import mdnCommand from "./mdnCommand";
+import stackoverflowCommand from "./stackoverflowCommand";
 
 /**
  * 搜索源
@@ -35,7 +36,8 @@ const fromDict: Record<string, CommandType> = {
   wangyiyun: wangyiyunCommand,
   zhihu: zhihuCommand,
   geng: gengCommand,
-  mdn: mdnCommand
+  mdn: mdnCommand,
+  stackoverflow: stackoverflowCommand
 };
 
 /**
