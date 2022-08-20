@@ -207,6 +207,20 @@
 
 
 
+#### stackoverflow stackoverflow BUG搜索
+
+用法：stackoverflow <搜索内容> [-s 是否当前页面打开]
+
+参数：
+
+- word 必填 搜索内容
+
+选项：
+
+- -s, --self 可选 是否当前页面打开
+
+
+
 ## 空间
 
 像管理文件一样管理你的常用网站
