@@ -20,7 +20,12 @@ const cdCommand: CommandType = {
     const spaceStore = useSpaceStore();
     const targetDir = _[0];
     if (_.length < 1) {
-      spaceStore.updateCurrentDir('/')
+      const result = spaceStore.updateCurrentDir('/');
+      if(result){
+        terminal.writeTextResult('已切换回根目录');
+      }else{
+        terminal.writeTextErrorResult("切换目录失败");
+      }
       return;
     }
     const result = spaceStore.updateCurrentDir(targetDir);
