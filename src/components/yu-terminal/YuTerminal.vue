@@ -349,6 +349,8 @@ const isInputFocused = () => {
  * 设置输入框的值
  */
 const setTabCompletion = () => {
+  // 手动触发hint
+  setHint(inputCommand.value.text);
   if (hint.value) {
     inputCommand.value.text = `${hint.value.split(" ")[0]}${
       hint.value.split(" ").length > 1 ? " " : ""
