@@ -372,6 +372,18 @@ const toggleAllCollapse = () => {
 };
 
 /**
+ * 关闭页面
+ */
+const shutdown = () => {
+	window.opener = null;
+	window.open("about:blank", "_top").close();
+};
+
+const reboot = () => {
+	location.reload();
+}
+
+/**
  * 操作终端的对象
  */
 const terminal: TerminalType = {
@@ -391,6 +403,8 @@ const terminal: TerminalType = {
   listCommandHistory,
   toggleAllCollapse,
   setCommandCollapsible,
+  shutdown,
+  reboot,
 };
 
 /**

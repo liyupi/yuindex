@@ -215,7 +215,7 @@
 
 #### list 列举空间条目
 
-别名：ls
+别名：ls, dir
 
 用法：list [目录] [-r 是否递归列举]
 
@@ -503,6 +503,22 @@
 介绍：查看快捷键
 
 用法：shortcut
+
+
+
+#### shutdown 关闭页面
+
+别名： exit
+
+用法： shutdown
+
+
+
+#### reboot 刷新页面
+
+别名： restart
+
+用法： reboot
 
 
 

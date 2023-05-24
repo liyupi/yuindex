@@ -8,7 +8,7 @@ import { useSpaceStore } from "./spaceStore";
 const listCommand: CommandType = {
   func: "list",
   name: "列举空间条目",
-  alias: ["ls"],
+  alias: ["ls", "dir"],
   params: [
     {
       key: "dir",

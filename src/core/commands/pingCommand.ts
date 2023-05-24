@@ -29,7 +29,7 @@ const pingCommand: CommandType = {
     const { _ } = options;
     const { timeout = "3000" } = options;
     if (_.length < 1) {
-      terminal.writeTextErrorResult("参数不足");
+      terminal.writeTextSuccessResult("pong");
       return;
     }
     var dest = _[0];
