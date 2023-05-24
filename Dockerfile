@@ -6,7 +6,7 @@ WORKDIR /src
 
 COPY . .
 
-RUN npm install
+RUN npm install --registry=https://registry.npmmirror.com
 
 RUN npm run build
 
