@@ -437,7 +437,7 @@ defineExpose({
 }
 
 .yu-terminal {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
   padding: 20px;
   overflow: scroll;
 }
