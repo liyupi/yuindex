@@ -3,6 +3,7 @@ import { getUsageStr } from "../../core/commands/terminal/help/helpUtils";
 import { commandMap } from "../../core/commandRegister";
 import _, { trim } from "lodash";
 import { useTerminalConfigStore } from "../../core/commands/terminal/config/terminalConfigStore";
+import parsedArgs from "../../utils/parsedArgs";
 
 /**
  * 命令提示功能
@@ -21,9 +22,10 @@ const useHint = () => {
       hint.value = "";
       return;
     }
-    const args = trim(inputText).split(" ");
+    const originArgs = trim(inputText).split(" ");
+    let args: string[] = parsedArgs(originArgs)
     // 大小写无关
-    let func = args[0].toLowerCase();
+    const func = args[0].toLowerCase();
     // 前缀匹配
     const likeKey = Object.keys(commandMap).filter((key) =>
       key.startsWith(func)

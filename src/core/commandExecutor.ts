@@ -3,6 +3,7 @@ import { commandMap } from "./commandRegister";
 import { CommandOptionType, CommandType } from "./command";
 import TerminalType = YuTerminal.TerminalType;
 import helpCommand from "./commands/terminal/help/helpCommand";
+import parsedArgs from "../utils/parsedArgs";
 
 /**
  * 执行命令
@@ -76,8 +77,9 @@ const doParse = (
   text: string,
   commandOptions: CommandOptionType[]
 ): getopts.ParsedOptions => {
-  // 过滤掉关键词
-  const args: string[] = text.split(" ").slice(1);
+  // 处理空格
+  const originArgs = text.split(" ").slice(1);
+  let args: string[] = parsedArgs(originArgs)
   // 转换
   const options: getopts.Options = {
     alias: {},
