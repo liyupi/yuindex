@@ -1,5 +1,5 @@
 import { CommandType } from "../../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**
@@ -14,7 +14,7 @@ const moyuCommand: CommandType = {
   action(options, terminal) {
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./MoYuBox.vue")),
+      component: markRaw(defineAsyncComponent(() => import("./MoYuBox.vue"))),
       props: {},
     };
     terminal.writeResult(output);

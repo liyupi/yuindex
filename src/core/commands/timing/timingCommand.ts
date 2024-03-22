@@ -1,5 +1,5 @@
 import { CommandType } from "../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**
@@ -26,7 +26,7 @@ const timingCommand: CommandType = {
     }
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./TimingBox.vue")),
+      component: markRaw(defineAsyncComponent(() => import("./TimingBox.vue"))),
       props: {
         seconds,
       },
