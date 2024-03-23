@@ -1,5 +1,5 @@
 import { CommandType } from "../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 import { checkSearchText } from "./hooks/character/standard";
 
@@ -27,7 +27,9 @@ const varbookCommand: CommandType = {
     if (!searchText) return;
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./VarbookBox.vue")),
+      component: markRaw(
+        defineAsyncComponent(() => import("./VarbookBox.vue"))
+      ),
       props: {
         searchText,
       },

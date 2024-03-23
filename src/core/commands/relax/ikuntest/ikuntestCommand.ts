@@ -1,5 +1,5 @@
 import { CommandType } from "../../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**
@@ -15,7 +15,9 @@ const ikuntestCommand: CommandType = {
   action(options, terminal) {
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./IkunTestBox.vue")),
+      component: markRaw(
+        defineAsyncComponent(() => import("./IkunTestBox.vue"))
+      ),
       props: {},
     };
     terminal.writeResult(output);

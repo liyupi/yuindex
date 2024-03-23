@@ -1,5 +1,5 @@
 import { CommandType } from "../../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**
@@ -17,7 +17,9 @@ const shortcutCommand: CommandType = {
   action(options, terminal): void {
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./ShortcutBox.vue")),
+      component: markRaw(
+        defineAsyncComponent(() => import("./ShortcutBox.vue"))
+      ),
     };
     terminal.writeResult(output);
   },

@@ -1,5 +1,5 @@
 import { CommandType } from "../../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**
@@ -14,7 +14,7 @@ const infoCommand: CommandType = {
   action(options, terminal): void {
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./InfoBox.vue")),
+      component: markRaw(defineAsyncComponent(() => import("./InfoBox.vue"))),
     };
     terminal.writeResult(output);
   },

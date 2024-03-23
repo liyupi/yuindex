@@ -1,5 +1,5 @@
 import { CommandType } from "../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 import addCommand from "./subCommands/addCommand";
 
@@ -28,7 +28,7 @@ const todoCommand: CommandType = {
     if (_.length < 1) {
       const output: ComponentOutputType = {
         type: "component",
-        component: defineAsyncComponent(() => import("./TodoBox.vue")),
+        component: markRaw(defineAsyncComponent(() => import("./TodoBox.vue"))),
       };
       terminal.writeResult(output);
       return;
