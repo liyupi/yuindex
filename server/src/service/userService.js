@@ -38,7 +38,7 @@ async function getLoginUser(req) {
  * @param email
  * @return {Promise<boolean>}
  */
-async function userRegister(username, password, email) {
+async function userRegister(username, password, email, req) {
   // 校验
   if (!username || !password || !email) {
     throw new MyError(REQUEST_PARAMS_ERROR_CODE, "参数错误");
@@ -67,7 +67,11 @@ async function userRegister(username, password, email) {
     password: cryptoPassword,
     email,
   });
-  return user.id;
+  // 注册成功后自动登录
+  user = user.toJSON();
+  delete user.password;
+  req.session.userInfo = user;
+  return user;
 }
 
 /**
