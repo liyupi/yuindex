@@ -1,6 +1,6 @@
 import { CommandType } from "../../../command";
-import { getSingleMusic } from "../../relax/music/musicApi";
 import { userRegister } from "../userApi";
+import { useUserStore } from "../userStore";
 
 /**
  * 用户注册命令
@@ -47,8 +47,10 @@ const registerCommand: CommandType = {
       return;
     }
     const res: any = await userRegister(username, password, email);
+    const { setLoginUser } = useUserStore();
     if (res?.code === 0) {
-      terminal.writeTextSuccessResult("注册成功");
+      setLoginUser(res.data);
+      terminal.writeTextSuccessResult("注册成功，已自动登录");
     } else {
       terminal.writeTextErrorResult(res?.message ?? "注册失败");
     }
