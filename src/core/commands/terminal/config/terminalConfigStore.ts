@@ -8,7 +8,7 @@ import { defineStore } from "pinia";
 export const useTerminalConfigStore = defineStore("terminalConfig", {
   state: () => ({
     // 背景
-    background: "black",
+    background: "linear-gradient(to right, #243949 0%, #517fa4 100%)",
     // 输入提示
     showHint: true,
     // 终端欢迎语
