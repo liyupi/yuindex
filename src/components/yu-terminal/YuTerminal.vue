@@ -275,6 +275,10 @@ const writeTextResult = (text: string, status?: OutputStatusType) => {
     status,
   };
   currentNewCommand.resultList.push(newOutput);
+  // 解决光标不显示问题
+  setTimeout(() => {
+    terminal.focusInput();
+  }, 0);
 };
 
 /**
