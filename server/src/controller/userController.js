@@ -20,7 +20,7 @@ async function userRegisterApi(event, req, res) {
   if (!username || !password || !email) {
     throw new MyError(REQUEST_PARAMS_ERROR_CODE, "参数错误");
   }
-  return await userRegister(username, password, email);
+  return await userRegister(username, password, email, req);
 }
 
 /**
