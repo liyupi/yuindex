@@ -1,5 +1,5 @@
 import { CommandType } from "../../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 /**
@@ -28,7 +28,7 @@ const musicCommand: CommandType = {
     const name = _[0];
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./MusicBox.vue")),
+      component: markRaw(defineAsyncComponent(() => import("./MusicBox.vue"))),
       props: {
         name,
       },

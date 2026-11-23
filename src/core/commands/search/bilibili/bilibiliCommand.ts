@@ -1,5 +1,5 @@
 import { CommandType } from "../../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
 const baseUrl = "https://www.baidu.com/s";
@@ -41,7 +41,9 @@ const bilibiliCommand: CommandType = {
     if (bvid) {
       const output: ComponentOutputType = {
         type: "component",
-        component: defineAsyncComponent(() => import("./BilibiliBox.vue")),
+        component: markRaw(
+          defineAsyncComponent(() => import("./BilibiliBox.vue"))
+        ),
         props: {
           bvid,
         },

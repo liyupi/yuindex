@@ -1,5 +1,5 @@
 import { CommandType } from "../../../command";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, markRaw } from "vue";
 import { commandMap } from "../../../commandRegister";
 import ComponentOutputType = YuTerminal.ComponentOutputType;
 
@@ -25,7 +25,7 @@ const helpCommand: CommandType = {
     if (_.length < 1) {
       const output: ComponentOutputType = {
         type: "component",
-        component: defineAsyncComponent(() => import("./HelpBox.vue")),
+        component: markRaw(defineAsyncComponent(() => import("./HelpBox.vue"))),
       };
       terminal.writeResult(output);
       return;
@@ -48,7 +48,9 @@ const helpCommand: CommandType = {
     }
     const output: ComponentOutputType = {
       type: "component",
-      component: defineAsyncComponent(() => import("./CommandHelpBox.vue")),
+      component: markRaw(
+        defineAsyncComponent(() => import("./CommandHelpBox.vue"))
+      ),
       props: {
         command,
         parentCommand,
