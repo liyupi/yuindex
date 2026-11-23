@@ -249,7 +249,7 @@ const wrapperStyle = computed(() => {
     ...mainStyle.value,
   };
   if (background.startsWith("http")) {
-    style.background = `url(${background})`;
+    style.background = `url(${background}) no-repeat center center/cover`;
   } else {
     style.background = background;
   }
