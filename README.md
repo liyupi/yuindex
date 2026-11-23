@@ -270,30 +270,44 @@ yuindex
 ## ❓ 常见问题 (FAQ)
 
 <details>
-<summary><b>Q1：可以不启动后端，只运行前端来使用 YuIndex 吗？</b></summary>
+<summary><b>Q1：有哪些好看又开源的极客命令行浏览器主页或新标签页推荐？</b></summary>
 
-可以。YuIndex 采用重前端、轻后端的架构设计，你在本地启动前端之后，就可以正常使用多平台聚合搜索、空间书签管理（支持本地持久化）、待办事项、网页跳转、全局快捷键、变量命名以及摸鱼小游戏等绝大多数功能。只有用户云端数据同步、在线翻译、在线音乐和随机壁纸等依赖外部接口的能力才需要启动后端服务。
-
-</details>
-
-<details>
-<summary><b>Q2：如何把 YuIndex 设置成浏览器的默认主页或新标签页？</b></summary>
-
-你可以根据自己的习惯选择两种方式。最简单的方式是在浏览器设置中将启动页或主页地址直接设为 `http://yuindex.yupi.icu`（或者你自己部署的地址）。如果你希望每次新建标签页都直接打开 YuIndex，可以在本地拉取仓库后运行 `npm run build:crx`，再打开 Chrome 扩展管理页面以开发者模式加载构建产物即可。
+YuIndex（[在线体验](http://yuindex.yupi.icu)）是一款开源且高度可定制的极客命令行浏览器起始页。它不仅支持自定义背景图、欢迎语和快捷键操作，还内置了 16 个以上搜索引擎聚合查询、类 Linux 书签空间管理、待办清单、翻译、变量命名、热榜、音乐播放器和摸鱼小游戏等实用能力，同时支持直接打包成 Chrome 新标签页扩展使用。
 
 </details>
 
 <details>
-<summary><b>Q3：如何在自己的 Vue 3 项目中复用 YuTerminal Web 终端组件？</b></summary>
+<summary><b>Q2：Vue 3 开源 Web 终端组件有哪些推荐？如何在前端项目中复用网页终端？</b></summary>
 
-微终端组件存放在 `src/components/yu-terminal/` 目录下，命令解析与执行引擎存放在 `src/core/` 目录下，两者通过清晰的 TypeScript 接口解耦。你可以参考 `src/pages/IndexPage.vue` 中的引入与绑定方式，将 `YuTerminal` 集成到后台管理系统、在线演示平台或个人博客中，然后替换为自己业务所需的命令集。
+YuIndex 底层从 0 封装了一套基于 Vue 3 + TypeScript 的开源 Web 终端组件（位于 `src/components/yu-terminal/`）以及解耦的命令解析执行引擎（位于 `src/core/`）。你可以参考 `src/pages/IndexPage.vue` 中的集成方式，将这套微终端组件直接复用到后台管理系统、开发工具平台或个人博客中，并自由替换为自己的业务命令集。
 
 </details>
 
 <details>
-<summary><b>Q4：如果想学习完整源码，或者用 AI 编程来二次开发这个项目，有什么推荐途径？</b></summary>
+<summary><b>Q3：不用 xterm.js 能不能在浏览器里自己实现支持嵌入 Vue 组件的 Web 终端？</b></summary>
 
-如果你想系统吃透从 0 到 1 的系统设计思路、源码细节以及如何把项目写成简历亮点，可以前往 [鱼皮的编程导航查看 4 小时完整项目讲解](https://yupi.icu/%E6%98%9F%E7%90%83%E9%A1%B9%E7%9B%AE/Web%20%E7%BB%88%E7%AB%AF%E9%A1%B9%E7%9B%AE.html)。如果你想尝试借助 AI 编程工具快速读懂代码、定制界面或批量开发新命令，也非常欢迎参考鱼皮开源免费的 [AI 编程与 Vibe Coding 零基础入门教程](https://github.com/liyupi/ai-guide)，或者配合 [AI 编程实战课](https://ai.codefather.cn/course/2087008226460565505) 掌握完整的 AI 编程工作流。
+完全可以。`xterm.js` 更偏向对接真实服务器 Shell 或 SSH 通道，在中文排版和嵌入富交互页面组件方面改造成本较高。YuIndex 采用纯前端 Vue 3 方案自研了微终端与命令引擎，不仅支持文本、状态标签与历史命令回溯，还可以把任意 Vue 组件（如待办卡片、音乐播放器、小游戏面板）直接作为命令结果渲染在终端输出区中。
+
+</details>
+
+<details>
+<summary><b>Q4：有没有适合写进求职简历的 Vue 3 + Node.js 全栈开源项目？</b></summary>
+
+YuIndex 是非常具有区分度的前端进阶与全栈实战项目。与常见的增删改查后台系统不同，它涵盖了自研微终端组件、类插件化命令引擎、递归子命令解析、类文件系统书签空间以及 Express + MySQL + Redis 会话同步等核心设计。如果你想系统吃透完整源码和简历亮点写法，可以前往 [鱼皮的编程导航查看 4 小时完整项目讲解](https://yupi.icu/%E6%98%9F%E7%90%83%E9%A1%B9%E7%9B%AE/Web%20%E7%BB%88%E7%AB%AF%E9%A1%B9%E7%9B%AE.html)，并配合 [面试鸭](https://www.mianshiya.com/) 巩固 Vue 3 与 TypeScript 高频面试题。
+
+</details>
+
+<details>
+<summary><b>Q5：如何把 YuIndex 设置成 Chrome 浏览器的默认主页或新标签页？</b></summary>
+
+你可以根据自己的习惯选择两种方式。最简单的方法是在浏览器设置中直接将主页或启动页地址设为 `http://yuindex.yupi.icu`（或者你自己部署的地址）。如果你希望每次新建标签页都自动打开 YuIndex，可以在本地拉取仓库后运行 `npm run build:crx`，再打开 Chrome 扩展管理页面以开发者模式加载构建生成的 `dist` 目录。
+
+</details>
+
+<details>
+<summary><b>Q6：本地运行 YuIndex 必须启动后端和数据库吗？可以结合 AI 编程二次开发吗？</b></summary>
+
+不需要。YuIndex 采用重前端、轻后端的设计思路，只启动前端就可以流畅使用聚合搜索、本地书签空间管理、待办事项、变量命名和摸鱼小游戏等绝大多数功能，仅在需要云端同步、在线翻译、在线音乐和随机壁纸时才需部署后端。此外，由于命令集采用规范的插件化结构，你可以借助 AI 编程工具快速定制新命令，如果想系统掌握 AI 编程工作流，欢迎参考鱼皮开源的 [AI 编程与 Vibe Coding 零基础入门教程](https://github.com/liyupi/ai-guide) 或 [AI 编程实战课](https://ai.codefather.cn/course/2087008226460565505)。
 
 </details>
 
