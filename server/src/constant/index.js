@@ -2,7 +2,7 @@
  * 网站域名
  * @type {string}
  */
-const WEB_HOST = "https://yuindex.com";
+const WEB_HOST = "http://yuindex.yupi.icu";
 
 /**
  * 查询简略用户信息需要的字段

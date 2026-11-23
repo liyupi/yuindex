@@ -63,7 +63,7 @@ class ExpressServer {
       saveUninitialized: true, // 如果原先没有session那么就设置，否则不设置(推荐true)
       rolling: true, // 每次请求更新有效时长
       cookie: {
-        // domain: ".yuindex.com", // 需要共享 cookie 时再设置
+        // domain: ".yupi.icu", // 需要共享 cookie 时再设置
         // 全局设置 cookie，就是访问随便 api 就会设置 cookie，也可以在登录的路由下单独设置
         maxAge: 1000 * 60 * 60 * 24 * 30, // 30 天后过期
         httpOnly: true, // 是否允许客户端修改 cookie（默认 true 不能被修改）

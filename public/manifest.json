@@ -7,7 +7,7 @@
   "chrome_url_overrides" : {
     "newtab": "index.html"
   },
-  "homepage_url": "https://yuindex.com/",
+  "homepage_url": "http://yuindex.yupi.icu",
   "minimum_chrome_version": "81.0.0",
   "offline_enabled": true,
   "permissions": ["tabs"],
